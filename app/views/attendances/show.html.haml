@@ -1,0 +1,4 @@
+%div{ data: { controller: 'monstas-attendance', 'monstas-attendance': { token: @attendance.token } } }
+  .text-gray-500.text-center
+    You are being forwarded. If nothing happens, click
+    = link_to 'here', root_url, data: { target: 'monstas-attendance.forward' }, class: 'text-red-500 hover:text-red-400 cursor-pointer'

@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{ content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1" }
+    %title Rumo
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_pack_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  %body
+    .w-full
+      %nav.bg-red-600
+        .text-center.tracking-widest.py-4.uppercase
+          .text-white.text-lg Ruby Monstas
+          .text-black.text-sm.lowercase vs
+          .text-yellow-500.text-lg COVID-19
+
+      .content.bg-white
+        .max-w-screen-sm.sm:mx-auto.mx-4.my-8
+          = yield
+      %footer
+        .text-center.tracking-wide ...

@@ -1,0 +1,27 @@
+%h1.text-center.text-3xl Coronavirus Precautionary measures
+
+.my-10.p-8.bg-white.shadow-inner.leading-relaxed.text-center
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+
+.my-10.text-center
+  = link_to 'I am attending', new_attendance_path, class: 'button button-green'
+
+.my-10
+  %div{ data: { controller: 'monstas-attendances', 'monstas-attendances': { url: my_attendances_url }} }
+
+.my-16.text-center
+  .text-gray-900.uppercase.text-sm.tracking-wider.underline How it works
+
+  %ol.list-outside.my-10
+    %li.my-5
+      Click on
+      %span.text-green-500.px-4.py-1.border.border-green-500.rounded I am attending
+      above.
+    %li.my-5 Fill out the form.
+    %li.my-5
+      Show
+      %b Your token
+      to a coach,
+      %br who will confirm your attendance.
