@@ -1,16 +1,18 @@
 .text-center
-  %h2 Sign in
+  %h2 Host sign in
+  .mx-auto.bg-yellow-100.my-10.p-4.shadow-lg.text-xs.text-gray-800.tracking-wide{ class: 'w-full sm:w-1/2' }
+    If you are a guest, you do not need to sign in.
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .my-5
-      = f.label :email
+      = f.label :email, class: 'text-gray-500 text-xs'
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input-text'
     .my-5
-      = f.label :password
+      = f.label :password, class: 'text-gray-500 text-xs'
       = f.password_field :password, autocomplete: "current-password", class: 'input-text'
     - if devise_mapping.rememberable?
       .my-5
         = f.check_box :remember_me
-        = f.label :remember_me
+        = f.label :remember_me, class: 'text-gray-500 text-xs'
     .actions.my-5
       = f.submit "Sign in", class: 'input-submit'
   .mt-10

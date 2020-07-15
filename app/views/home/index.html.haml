@@ -10,35 +10,44 @@
 
 %h2.mt-16.text-center.text-3xl Guest
 
-- if @visits_count.positive?
-  .my-10.p-8.text-center
-    = link_to 'My visits', visits_path, class: 'py-2 px-5 border rounded'
+.bg-yellow-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
+  - if @visits_count.positive?
+    .my-10.p-8.text-center
+      = link_to 'My visits', visits_path, class: 'py-2 px-5 border rounded'
 
-.mb-10.text-center.p-8
-  = form_with model: @goto_hosts_form, url: root_path do |f|
-    = f.label :host_url_identifier, 'Enter your hosts token manually'
-    = f.text_field :host_url_identifier, class: 'input-text'
-    %span.text-xs.text-pink-400= f.object.errors.messages[:host_url_identifier].join
-    .mt-4
-      = f.submit 'Go', class: 'input-submit'
+  %h3 Visit a host
+  .flex.py-4.flex-wrap.sm:flex-no-wrap.items-center.justify-between
+    .text-center.text-gray-800{ class: 'w-full sm:w-5/12' }
+      .mb-1.text-xs.text-gray-500 Scan
+      .svg-center= render_svg 'scan_large.svg'
+      .mt-2.text-xs.text-gray-500
+        Ask your host for the
+        %span.font-bold QR code
+        that automatically takes you to the registration form.
+    .text-center.text-gray-500.self-center{ class: 'w-full sm:w-2/12' }
+      .w-full
+        or
+    .text-center{ class: 'w-full sm:w-5/12' }
+      .w-full
+        = form_with model: @goto_hosts_form, url: root_path do |f|
+          = f.label :host_url_identifier, "Enter your host's token manually", class: 'mb-1 text-xs text-gray-500'
+          = f.text_field :host_url_identifier, class: 'input-text shadow-lg'
+          %span.text-xs.text-pink-400= f.object.errors.messages[:host_url_identifier].join
+          .mt-4
+            = f.submit 'Go', class: 'input-submit'
 
-%h2.mt-16.text-center.text-3xl Hosts
+%h2.mt-24.text-center.text-3xl Hosts
 
-%h3.text-center Register
-
-- if host_signed_in?
-  .text-center
-    = link_to admin_root_path, class: 'inline-block bg-purple-300 p-2 sm:w-1/3 rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-purple-400' do
-      .text-center Go to admin area
-- else
-  .flex.flex-wrap.sm:flex-no-wrap.items-center.justify-center
-    .m-4.text-center{ class: 'w-full sm:w-5/12' }
-      = link_to new_host_session_path, class: 'inline-block bg-green-200 p-2 w-full rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-green-300' do
+.bg-orange-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
+  %h3.text-center Register
+  .flex.p-4.flex-wrap.sm:flex-no-wrap.items-center.justify-between
+    .text-center{ class: 'w-full sm:w-5/12' }
+      = link_to new_host_registration_path, class: 'inline-block bg-green-200 p-2 w-full rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-green-300' do
         .ml-2.svg-center= render_svg 'pencil.svg'
         .text-center Sign up
-    .m-2.text-center.text-gray-500{ class: 'w-full sm:w-2/12' }
+    .text-center.text-gray-500{ class: 'w-full sm:w-2/12' }
       or
-    .m-4.text-center{ class: 'w-full sm:w-5/12' }
+    .text-center{ class: 'w-full sm:w-5/12' }
       = link_to new_host_session_path, class: 'inline-block bg-purple-100 p-2 w-full rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-purple-200' do
         .ml-2.svg-center= render_svg 'sign_in.svg'
         .text-center Sign in

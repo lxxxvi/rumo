@@ -1,7 +1,7 @@
 .text-sm
   - if controller_name != 'sessions'
     .my-3
-      = link_to "Log in", new_session_path(resource_name), class: 'shy-link'
+      = link_to "Sign in", new_session_path(resource_name), class: 'shy-link'
 
   - if devise_mapping.registerable? && controller_name != 'registrations'
     .my-3

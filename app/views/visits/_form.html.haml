@@ -1,19 +1,14 @@
-= form_with model: visit_form, url: visit_path(visit_form.object.host) do |f|
-  .grid.grid-col-rows
-    .mb-8
-      = f.label :name
-      = f.text_field :name, placeholder: "optional", class: "w-full"
-    .mb-8
-      = f.label :contact
-      = f.text_field :contact, placeholder: "Please provide an email or phone", class: "w-full"
-      - if visit_form.errors.key?(:contact)
-        .text-red-500.text-xs.mt-1
-          = visit_form.errors.messages[:contact].join(', ')
+.text-center
+  = form_with model: visit_form, url: visit_path(visit_form.object.host) do |f|
+    .mx-auto{ class: 'w-full sm:w-1/2' }
+      .mb-8
+        = f.label :name, class: 'text-gray-500 text-xs tracking-wide'
+        = f.text_field :name, placeholder: "optional", class: 'input-text w-full'
+        = render 'shared/forms/field_error_messages', form: visit_form, column: :name
+      .mb-8
+        = f.label :contact, class: 'text-gray-500 text-xs tracking-wide'
+        = f.text_field :contact, placeholder: "Please provide an email or phone", class: 'input-text  w-full'
+        = render 'shared/forms/field_error_messages', form: visit_form, column: :contact
 
-    .actions
-      = f.submit 'Submit my contact data', class: "button button-green w-full"
-
-    .text-xs.text-gray-500.mt-8
-      We are going to delete this information after 14 days. Meanwhile, we are not giving it to
-      %span.italic.tracking-wider anyone.
-      Promised.
+      .actions.mt-10
+        = f.submit 'Submit my contact data', class: "input-submit"
