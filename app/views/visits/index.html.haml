@@ -1,0 +1,5 @@
+.text-center
+  = link_to 'Back', root_path, class: 'text-sm text-gray-500 py-1 px-5 border rounded'
+  %h1.my-10 My visits
+
+  = render 'list', visits: @visits

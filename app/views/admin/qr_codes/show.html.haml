@@ -1,0 +1,17 @@
+.flex.flex-wrap.text-center.bg-yellow-100.p-5.noprint
+  .w-full
+    = render 'shared/buttons/back', url: admin_root_path
+  .w-full.text-xs.mt-4
+    .text-gray-500.tracking-wider (consider printing this page)
+
+.container.mx-auto
+  .flex.flex-wrap.text-center.p-10
+    .w-full.mb-5
+      .text-3xl.bold.tracking-wide= current_host.name
+    .w-full.my-5
+      .text-xs.text-gray-500.tracking-wide Identifier
+      .text-3xl.font-mono= current_host.url_identifier
+    .w-full.my-5
+      .svg-center= raw @qr_code.as_svg
+      .text-sm.text-gray-600.tracking-wider.mt-2= @qr_code.url
+

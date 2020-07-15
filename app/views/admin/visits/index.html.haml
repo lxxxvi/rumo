@@ -1,0 +1,56 @@
+
+.text-center
+  .text-gray-700.text-sm= "#{current_host.name}"
+  %h1.text-2xl.tracking-wider Manage visits
+
+.text-center.my-10
+  = render 'shared/buttons/back', url: admin_root_path
+
+.flex.flex-wrap.sm:flex-no-wrap.text-sm
+  .w-full.mb-2.text-center
+    - unconfirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'text-gray-500' : 'font-bold'
+    %div{ class: "inline #{unconfirmed_active_class}"}
+      \-
+      = link_to "#{@visit_statistics['unconfirmed'] || 0} unconfirmed", admin_visits_path, class: 'hover:text-black'
+    - confirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'font-bold' : 'text-gray-500'
+    %div{ class: "inline #{confirmed_active_class} ml-2" }
+      ✓
+      = link_to "#{@visit_statistics['confirmed'] || 0} confirmed", admin_visits_path(filter: { status: 'confirmed'}), class: 'hover:text-black'
+
+- if @visits.any?
+  %div{ data: { controller: 'admin-visits' } }
+    - @visits.each do |visit|
+      .my-4.rounded{ class: "admin-visit-status-#{visit.status}", data: { action: 'click->admin-visits#toggleActionMenu', visit: { token: visit.token } } }
+        .flex.flex-wrap
+          .w-full.px-5.pt-3
+            .text-xs.text-gray-500= visit.decorate.display_visited_at_in_hosts_time_zone
+          .w-full.px-5.py-1
+            .text-2xl= visit.token
+          .w-full.px-5.pb-3
+            .flex
+              .flex-auto
+                .text-red-600.text-xs.tracking-wider
+                  - if visit.name.present?
+                    = "#{visit.name} | "
+                  = visit.contact
+              .flex-auto.text-right.text-sm{ class: "text-status-#{visit.status}"}
+                = visit.decorate.display_status
+          - unless visit.confirmed?
+            .w-full{ data: { target: 'admin-visits.actionMenu'} }
+              .flex.flex-wrap.text-center.sm:flex-no-wrap
+                .w-full.p-3
+                  = form_with model: nil, url: admin_visit_confirmation_path(visit) do |f|
+                    = f.submit 'Confirm', class: 'cursor-pointer w-full rounded bg-green-500 hover:bg-green-600 transition duration-200 ease-in-out text-sm text-white tracking-wider'
+                .w-full.p-3
+                  = form_with model: nil, url: admin_visit_rejection_path(visit) do |f|
+                    = f.submit 'Remove', class: 'cursor-pointer w-full rounded bg-gray-200 transition duration-200 ease-in-out hover:bg-gray-300 text-sm text-gray-700 tracking-wider'
+
+- else
+  - if params.dig('filter', 'status') == 'confirmed'
+    .text-gray-500.text-center.text-sm None
+  - else
+    .mt-10
+      .svg-center= render_svg 'circle_check_large_green.svg'
+      .text-gray-700.text-center.tracking-wide.mt-2
+        All caught up!
+
