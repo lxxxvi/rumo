@@ -14,4 +14,10 @@ end
 
 class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
+
+  def assert_redirected_to_sign_in
+    assert_redirected_to new_host_session_path
+    follow_redirect!
+    assert_response :success
+  end
 end
