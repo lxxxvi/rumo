@@ -11,11 +11,11 @@
     - unconfirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'text-gray-500' : 'font-bold'
     %div{ class: "inline #{unconfirmed_active_class}"}
       \-
-      = link_to "#{@visit_statistics['unconfirmed'] || 0} unconfirmed", admin_visits_path, class: 'hover:text-black'
+      = link_to "#{@visit_statistics.unconfirmed || 0} unconfirmed", admin_visits_path, class: 'hover:text-black'
     - confirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'font-bold' : 'text-gray-500'
     %div{ class: "inline #{confirmed_active_class} ml-2" }
       ✓
-      = link_to "#{@visit_statistics['confirmed'] || 0} confirmed", admin_visits_path(filter: { status: 'confirmed'}), class: 'hover:text-black'
+      = link_to "#{@visit_statistics.confirmed || 0} confirmed", admin_visits_path(filter: { status: 'confirmed'}), class: 'hover:text-black'
 
 - if @visits.any?
   %div{ data: { controller: 'admin-visits' } }
