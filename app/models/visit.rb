@@ -5,20 +5,13 @@ class Visit < ApplicationRecord
   before_validation :initialize_visited_at
   before_validation :initialize_token
 
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
   scope :of_uuid, ->(uuid) { where(uuid: uuid) }
 
   scope :antichronological, -> {
     order(visited_at: :desc).order(confirmed_at: :desc).order(:token)
   }
-
-  scope :visited_at_around, ->(time = Time.zone.now) {
-    from_time = time - 30.minutes
-    to_time = time + 30.minutes
-    where(visited_at: (from_time..to_time))
-  }
-
-  scope :confirmed, -> { where.not(confirmed_at: nil) }
-  scope :unconfirmed, -> { where(confirmed_at: nil) }
 
   def to_param
     token

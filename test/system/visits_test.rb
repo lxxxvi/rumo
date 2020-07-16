@@ -1,9 +1,10 @@
 require "application_system_test_case"
 
 class VisitsTest < ApplicationSystemTestCase
-  test 'visits host "cafe" form' do
-    host = hosts(:cafe)
-    visit new_host_visit_path(host)
-    assert_selector 'h1', text: 'Welcome to Cafe Perfetto'
-  end
+  test 'visitor gets to form by entering host url identifier'
+  test 'visitor submits form, invalid params'
+  test 'visitor submits form, valid params'
+  test 'visitors see only their visits'
+  test 'visitor gets notified about confirmation'
+  test 'visitor sees visits on home page'
 end
