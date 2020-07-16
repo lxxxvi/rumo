@@ -5,6 +5,7 @@ class VisitsTest < ApplicationSystemTestCase
   test 'visitor submits form, invalid params'
   test 'visitor submits form, valid params'
   test 'visitors see only their visits'
+  test 'visitors see only their visits, no visits'
   test 'visitor gets notified about confirmation'
   test 'visitor sees visits on home page'
 end
