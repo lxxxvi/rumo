@@ -43,7 +43,6 @@ ActiveRecord::Schema.define(version: 2020_06_29_084417) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["host_id", "token"], name: "index_visits_on_host_id_and_token", unique: true
-    t.index ["host_id", "visited_at", "contact"], name: "index_visits_on_host_id_and_visited_at_and_contact", unique: true
     t.index ["host_id"], name: "index_visits_on_host_id"
   end
 

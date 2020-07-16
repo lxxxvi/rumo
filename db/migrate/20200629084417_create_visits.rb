@@ -10,7 +10,6 @@ class CreateVisits < ActiveRecord::Migration[6.0]
       t.datetime :confirmed_at, null: true
 
       t.index %i[host_id token], unique: true
-      t.index %i[host_id visited_at contact], unique: true
 
       t.timestamps
     end

@@ -1,6 +1,7 @@
 class Visit < ApplicationRecord
   belongs_to :host
   validates :visited_at, :contact, :token, presence: true
+  validates :token, uniqueness: { scope: :host_id }
 
   before_validation :initialize_visited_at
   before_validation :initialize_token
