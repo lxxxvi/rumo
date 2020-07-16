@@ -23,6 +23,6 @@ class VisitForm
   end
 
   def model_name
-    ActiveModel::Name.new(self, nil, 'Host::Visit')
+    ActiveModel::Name.new(self, nil, 'Visit')
   end
 end

@@ -23,7 +23,7 @@ class VisitsController < ApplicationController
   private
 
   def visit_params
-    params.require(:host_visit)
+    params.require(:visit)
           .permit(:name, :contact)
           .merge(uuid: session[:uuid])
   end
