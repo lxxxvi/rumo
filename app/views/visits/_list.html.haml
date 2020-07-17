@@ -1,7 +1,7 @@
 - if visits.present? && visits.any?
-  %ul
+  %ul#visits
     - visits.each do |visit|
-      %div{ data: { controller: 'synchronize-visit', 'synchronize-visit-token': visit.token } }
+      %li{ data: { controller: 'synchronize-visit', 'synchronize-visit-token': visit.token } }
         = render 'list_item', visit: visit
 - else
-  .text-sm.text-gray-500 (none)
+  .text-sm.text-gray-500 No visits found

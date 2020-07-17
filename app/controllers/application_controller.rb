@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_uuid
-    session[:uuid] ||= SecureRandom.uuid
-    cookies.signed[:uuid] ||= session[:uuid]
+    session[:uuid] ||= cookies.signed[:uuid] || SecureRandom.uuid
+    cookies.signed[:uuid] = session[:uuid]
   end
 end

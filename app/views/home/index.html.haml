@@ -10,7 +10,7 @@
 
 %h2.mt-16.text-center.text-3xl Guest
 
-.bg-yellow-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
+%section#guest.bg-yellow-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
   - if @visits_count.positive?
     .my-10.p-8.text-center
       = link_to 'My visits', visits_path, class: 'py-2 px-5 border rounded'
