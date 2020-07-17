@@ -7,7 +7,7 @@
         = render 'shared/forms/field_error_messages', form: visit_form, column: :name
       .mb-8
         = f.label :contact, class: 'text-gray-500 text-xs tracking-wide'
-        = f.text_field :contact, placeholder: "Please provide an email or phone", class: 'input-text  w-full'
+        = f.text_field :contact, placeholder: "Please provide an email or phone", class: 'input-text w-full'
         = render 'shared/forms/field_error_messages', form: visit_form, column: :contact
 
       .actions.mt-10

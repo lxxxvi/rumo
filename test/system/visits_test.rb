@@ -51,10 +51,7 @@ class VisitsTest < ApplicationSystemTestCase
       end
 
       within_window admin_window do
-        visit('/hosts/sign_in')
-        fill_in 'Email', with: 'host@perfetto.cafe'
-        fill_in 'Password', with: 'abc'
-        click_on 'Sign in'
+        sign_in hosts(:cafe)
         click_on 'Manage visits'
 
         find("[data-visit-token=#{@visit_token}]").tap do |element|

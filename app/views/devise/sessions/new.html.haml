@@ -1,14 +1,24 @@
 .text-center
-  %h2 Host sign in
+  %h1 Host sign in
   .mx-auto.bg-yellow-100.my-10.p-4.shadow-lg.text-xs.text-gray-800.tracking-wide{ class: 'w-full sm:w-1/2' }
-    If you are a guest, you do not need to sign in.
+    If you are a
+    %span.font-bold guest
+    you do not need to sign in.
+
+  - if flash[:alert].present?
+    .flash.flash-alert
+      .mx-auto.bg-pink-100.my-10.p-4.shadow-lg.text-sm.text-gray-800.tracking-wide{ class: 'w-full sm:w-1/2' }
+        = flash[:alert]
+
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .my-5
       = f.label :email, class: 'text-gray-500 text-xs'
       = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input-text'
+      = render 'shared/forms/field_error_messages', form: resource, column: :email
     .my-5
       = f.label :password, class: 'text-gray-500 text-xs'
       = f.password_field :password, autocomplete: "current-password", class: 'input-text'
+      = render 'shared/forms/field_error_messages', form: resource, column: :password
     - if devise_mapping.rememberable?
       .my-5
         = f.check_box :remember_me
@@ -16,4 +26,4 @@
     .actions.my-5
       = f.submit "Sign in", class: 'input-submit'
   .mt-10
-    = render "devise/shared/links"
+    = render 'devise/shared/links'
