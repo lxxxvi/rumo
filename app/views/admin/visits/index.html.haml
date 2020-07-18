@@ -4,7 +4,7 @@
   %h1.text-2xl.tracking-wider Manage visits
 
 .text-center.my-10
-  = render 'shared/buttons/back', url: admin_root_path
+  = raw render 'shared/buttons/back', url: admin_root_path
 
 .flex.flex-wrap.sm:flex-no-wrap.text-sm
   .w-full.mb-2.text-center
@@ -50,7 +50,7 @@
     .text-gray-500.text-center.text-sm.mt-2 Nothing here yet.
   - else
     .mt-10
-      .svg-center= render_svg 'circle_check_large_green.svg'
+      .svg-center= raw render_svg 'circle_check_large_green.svg'
       .text-gray-700.text-center.tracking-wide.mt-2
         All caught up!
 

@@ -27,7 +27,7 @@ class VisitTest < ActiveSupport::TestCase
   test 'initializes columns' do
     visit = Visit.new
 
-    target_time = Time.new(2020, 2, 2, 15, 0, 0)
+    target_time = Time.zone.local(2020, 2, 2, 15, 0, 0)
 
     travel_to target_time do
       visit.validate

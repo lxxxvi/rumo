@@ -16,6 +16,8 @@ Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
 Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
   Max: 120
 
 Lint/DuplicateElsifCondition:

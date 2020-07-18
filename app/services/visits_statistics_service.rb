@@ -1,11 +1,11 @@
 class VisitsStatisticsService
-  Statistics = Struct.new(:hash) do
+  Statistics = Struct.new(:data) do
     def confirmed
-      hash[:confirmed] || 0
+      data[:confirmed] || 0
     end
 
     def unconfirmed
-      hash[:unconfirmed] || 0
+      data[:unconfirmed] || 0
     end
   end
 

@@ -19,7 +19,7 @@
   .flex.py-4.flex-wrap.sm:flex-no-wrap.items-center.justify-between
     .text-center.text-gray-800{ class: 'w-full sm:w-5/12' }
       .mb-1.text-xs.text-gray-500 Scan
-      .svg-center= render_svg 'scan_large.svg'
+      .svg-center= raw render_svg 'scan_large.svg'
       .mt-2.text-xs.text-gray-500
         Ask your host for the
         %span.font-bold QR code
@@ -43,11 +43,11 @@
   .flex.p-4.flex-wrap.sm:flex-no-wrap.items-center.justify-between
     .text-center{ class: 'w-full sm:w-5/12' }
       = link_to new_host_registration_path, class: 'inline-block bg-green-200 p-2 w-full rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-green-300' do
-        .ml-2.svg-center= render_svg 'pencil.svg'
+        .ml-2.svg-center= raw render_svg 'pencil.svg'
         .text-center Sign up
     .text-center.text-gray-500{ class: 'w-full sm:w-2/12' }
       or
     .text-center{ class: 'w-full sm:w-5/12' }
       = link_to new_host_session_path, class: 'inline-block bg-purple-100 p-2 w-full rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-purple-200' do
-        .ml-2.svg-center= render_svg 'sign_in.svg'
+        .ml-2.svg-center= raw render_svg 'sign_in.svg'
         .text-center Sign in

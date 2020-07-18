@@ -3,7 +3,7 @@ class Host < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :visits
+  has_many :visits, dependent: :destroy
 
   validates :name, presence: true
 
