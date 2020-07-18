@@ -7,11 +7,11 @@
 .container.mx-auto
   .flex.flex-wrap.text-center.p-10
     .w-full.mb-5
-      .text-3xl.bold.tracking-wide= current_host.name
+      .text-3xl.bold.tracking-wide.host-name= current_host.name
     .w-full.my-5
       .text-xs.text-gray-500.tracking-wide Identifier
-      .text-3xl.font-mono= current_host.url_identifier
-    .w-full.my-5
+      .text-3xl.font-mono.host-url-identifier= current_host.url_identifier
+    .w-full.my-5.host-qr-code
       .svg-center= raw @qr_code.as_svg
       .text-sm.text-gray-600.tracking-wider.mt-2= @qr_code.url
 
