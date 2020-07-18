@@ -31,7 +31,7 @@ class VisitTest < ActiveSupport::TestCase
 
     travel_to target_time do
       visit.validate
-      assert_match /[[:alnum:]]{5}/, visit.token
+      assert_match(/[[:alnum:]]{5}/, visit.token)
       assert_equal target_time, visit.visited_at
     end
   end
@@ -45,7 +45,7 @@ class VisitTest < ActiveSupport::TestCase
   end
 
   test '.of_uuid' do
-    assert_difference -> { Visit.of_uuid("11111111-1111-1111-1111-111111111111").count }, -1 do
+    assert_difference -> { Visit.of_uuid('11111111-1111-1111-1111-111111111111').count }, -1 do
       @visit.update!(uuid: 'another-uuid')
     end
   end

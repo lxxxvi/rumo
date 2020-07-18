@@ -21,8 +21,6 @@ class GotoHostsForm
   private
 
   def host_exist
-    if host_url_identifier.present? && host.nil?
-      errors.add(:host_url_identifier, 'could not be found')
-    end
+    errors.add(:host_url_identifier, 'could not be found') if host_url_identifier.present? && host.nil?
   end
 end

@@ -1,4 +1,4 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class VisitsTest < ApplicationSystemTestCase
   test 'visitor gets to form by entering host url identifier' do

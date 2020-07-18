@@ -3,11 +3,11 @@ class Admin::VisitsController < Admin::BaseController
     @visit_statistics = VisitsStatisticsService.new(current_host).statistics
     @visits = current_host.visits.antichronological
 
-    if confirmed_only?
-      @visits = @visits.confirmed
-    else
-      @visits = @visits.unconfirmed
-    end
+    @visits = if confirmed_only?
+                @visits.confirmed
+              else
+                @visits.unconfirmed
+              end
   end
 
   private

@@ -1,6 +1,7 @@
 class VisitForm
   include ActiveModel::Model
-  attr_reader :object, :params,:name, :contact, :uuid
+  attr_reader :object, :params, :name, :contact, :uuid
+
   delegate :host, to: :object
 
   validates :contact, presence: true

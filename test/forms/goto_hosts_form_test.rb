@@ -22,7 +22,7 @@ class GotoHostsFormTest < ActiveSupport::TestCase
 
     assert_not form.valid?
     assert_equal 1, form.errors[:host_url_identifier].count
-    assert_equal ["could not be found"], form.errors[:host_url_identifier]
+    assert_equal ['could not be found'], form.errors[:host_url_identifier]
   end
 
   private

@@ -1,4 +1,4 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class Admin::VisitsTest < ApplicationSystemTestCase
   test 'confirms a visit' do
@@ -67,6 +67,6 @@ class Admin::VisitsTest < ApplicationSystemTestCase
   end
 
   def find_visit_list_items
-    find_all("[data-controller=admin-visits] > div")
+    find_all('[data-controller=admin-visits] > div')
   end
 end

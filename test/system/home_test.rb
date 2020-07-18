@@ -1,4 +1,4 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class HomeTest < ApplicationSystemTestCase
   test 'elements on public home page' do
@@ -7,7 +7,6 @@ class HomeTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Welcome'
     assert_selector 'h2', text: 'For guest'
     assert_selector 'h2', text: 'For hosts'
-
 
     # guest section
     assert_selector 'section#guest' do

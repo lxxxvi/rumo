@@ -1,5 +1,5 @@
 require 'test_helper'
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class HostsTest < ApplicationSystemTestCase
   include ActionMailer::TestHelper
@@ -80,7 +80,7 @@ class HostsTest < ApplicationSystemTestCase
   end
 
   test 'host signs in, invalid params' do
-    Struct.new("Host", :email)
+    Struct.new('Host', :email)
     invalid_host = Struct::Host.new('')
     password = ''
 
