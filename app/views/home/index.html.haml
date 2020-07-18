@@ -1,4 +1,4 @@
-%h2.text-center.text-3xl Welcome
+%h1.text-center.text-3xl Welcome
 
 .text-center.tracking-wide.leading-relaxed.text-gray-800
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -8,7 +8,7 @@
   cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
   proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-%h2.mt-16.text-center.text-3xl Guest
+%h2.mt-16.text-center.text-3xl For guests
 
 %section#guest.bg-yellow-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
   - if @visits_count.positive?
@@ -36,7 +36,7 @@
           .mt-4
             = f.submit 'Go', class: 'input-submit'
 
-%h2.mt-24.text-center.text-3xl Hosts
+%h2.mt-24.text-center.text-3xl For hosts
 
 %section#host.bg-orange-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
   %h3.text-center Register
