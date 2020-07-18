@@ -1,6 +1,9 @@
+require 'test_helper'
 require "application_system_test_case"
 
 class HostsTest < ApplicationSystemTestCase
+  include ActionMailer::TestHelper
+
   test 'host signs up' do
     visit '/'
 
@@ -36,20 +39,39 @@ class HostsTest < ApplicationSystemTestCase
     visit new_host_session_path
 
     click_on 'Forgot your password?'
-    assert_selector 'h2', text: 'Forgot your password?'
+    assert_selector 'h1', text: 'Forgot your password?'
     fill_in 'Email', with: 'host@cinema.hollywood'
 
-    skip # TODO: Implement reset
+    assert_emails 1 do
+      click_on 'Reset password'
+    end
+
+    assert_selector 'h1', text: 'Host sign in'
+    assert_selector '.flash.flash-notice',
+                    text: 'You will receive an email with instructions on how to reset your password'
   end
 
   test 'host resets password, invalid params' do
     visit new_host_password_path
 
-    click_on 'Send me reset password instructions'
-    assert_selector 'h2', text: 'Forgot your password?'
+    # empty form
+    click_on 'Reset password'
+    assert_selector 'h1', text: 'Forgot your password?'
     assert_selector '.field_with_errors input', minimum: 1
 
-    skip # TODO: Test error messages
+    error_messages = find_all('.error-message').map(&:text)
+    assert_equal 1, error_messages.size
+    assert_equal "can't be blank", error_messages.first
+
+    # inexistent mail address
+    fill_in 'Email', with: 'a@b.c'
+    click_on 'Reset password'
+
+    assert_selector '.field_with_errors input', minimum: 1
+
+    error_messages = find_all('.error-message').map(&:text)
+    assert_equal 1, error_messages.size
+    assert_equal 'not found', error_messages.first
   end
 
   test 'host signs in' do
