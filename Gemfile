@@ -9,12 +9,12 @@ gem 'haml-rails', '~> 2.0'
 gem 'puma'
 # gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
+gem 'rails'
 gem 'rqrcode'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 # gem 'redis', '~> 4.0'
-gem 'webpacker', '~> 4.0'
+gem 'webpacker'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
