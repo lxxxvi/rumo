@@ -1,61 +1,56 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
-@import "tailwindcss/utilities";
 
 body {
-  @apply bg-white;
+  @apply bg-transparent;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply text-purple-600 tracking-wider mb-6;
 }
 
 h1 {
-  @apply text-red-600 tracking-wider mb-6;
+  @apply mb-6;
 }
 
 label {
-  @apply block mb-1 text-xs text-gray-500;
+  @apply block;
 }
 
 input, select {
-  @apply text-xl py-3 px-2;
+  @apply py-3 px-2;
 }
 
-input {
-  @apply rounded border border-gray-200 tracking-wide;
+.input-text {
+  @apply bg-purple-100 border border-purple-400 rounded-lg shadow-inner;
 }
 
-input[type=submit] {
-  @apply bg-transparent;
+.input-submit {
+  @apply bg-purple-400 rounded-lg py-2 px-10 cursor-pointer transition duration-200 ease-in-out;
+}
+
+.input-submit:hover {
+  @apply bg-purple-500;
 }
 
 .button {
   @apply rounded py-2 px-10 border-2 cursor-pointer;
 }
 
-.button-red {
-  @apply border-red-500 text-red-500;
-}
-
-.button-red:hover {
-  @apply bg-red-500 text-white;
-}
-
-.button-green {
-  @apply border-green-500 text-green-500;
-}
-
-.button-green:hover {
-  @apply bg-green-500 text-white;
-}
-
 a.shy-link {
-  @apply text-gray-500;
+  @apply text-gray-500 transition duration-200 ease-in-out;
 }
 
 a.shy-link:hover {
-  @apply text-red-500;
+  @apply text-purple-500;
 }
 
 ol {
   @apply list-decimal list-inside;
+}
+
+.field_with_errors input {
+  @apply border-pink-500;
 }
 
 .text-status-confirmed { @apply text-green-400; }
@@ -63,3 +58,27 @@ ol {
 
 .border-status-confirmed { @apply border-green-400 border-2; }
 .border-status-unconfirmed { @apply border-gray-200 border; }
+
+.admin-visit-status-confirmed {
+  @apply border-green-300 border border-l-8;
+}
+
+.admin-visit-status-unconfirmed {
+  @apply border-purple-500 border border-l-8 cursor-pointer;
+}
+
+.admin-visit-status-unconfirmed:hover {
+  @apply border-purple-600;
+}
+
+@media print{
+  .noprint {
+    @apply hidden;
+  }
+}
+
+.svg-center > svg {
+  @apply mx-auto;
+}
+
+@import "tailwindcss/utilities";

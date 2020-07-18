@@ -1,12 +1,21 @@
 Rails.application.routes.draw do
-  resources :attendances, only: %w[new create show], param: :token
-  get 'my/attendances(/:tokens)', to: 'attendances#list', as: :my_attendances
+  devise_for :hosts
 
-  namespace :coaches do
-    resources :attendances, only: %w[index destroy], param: :token do
-      get :confirm, on: :member
+  get 'visit/:host_url_identifier', to: 'visits#new', as: :visit
+  post 'visit/:host_url_identifier', to: 'visits#create'
+  get :visits, to: 'visits#index'
+
+  namespace :admin do
+    resources :visits, only: :index, param: :token do
+      resource :confirmation, only: :create, module: :visits
+      resource :rejection, only: :create, module: :visits
     end
+
+    resource 'qr_code', only: :show
+    root to: 'home#index'
   end
+
+  post '/', to: 'home#index'
 
   root to: 'home#index'
 end

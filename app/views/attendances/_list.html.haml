@@ -1,8 +1,0 @@
-- if attendances.present? && attendances.any?
-  %h2.text-sm.text-red-500.text-center.mb-5 Your attendances
-
-  %ul
-    - attendances.each do |attendance|
-      %div{ data: { controller: 'monstas-attendance', 'monstas-attendance-token': attendance.token } }
-        = render 'list_item', attendance: attendance
-

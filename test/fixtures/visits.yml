@@ -1,0 +1,20 @@
+jim_cafe_20200101:
+  host: cafe
+  uuid: "11111111-1111-1111-1111-111111111111"
+  visited_at: 2020-01-01T13:00:00
+  contact: 'jim@jim.jim'
+  token: 'JIMCAFETOKEN'
+
+pam_cafe_20200101:
+  host: cafe
+  uuid: "22222222-2222-2222-2222-22222222222"
+  visited_at: 2020-01-01T13:00:00
+  contact: 'pam@pam.pam'
+  token: 'PAMCAFETOKEN'
+
+mike_cinema_20200101:
+  host: cinema
+  uuid: "33333333-3333-3333-3333-33333333333"
+  visited_at: 2020-01-01T13:00:00
+  contact: 'mike@mike.mike'
+  token: 'MIKECINEMATOKEN'

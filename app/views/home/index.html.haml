@@ -1,27 +1,53 @@
-%h1.text-center.text-3xl Coronavirus Precautionary measures
+%h1.text-center.text-3xl Welcome
 
-.my-10.p-8.bg-white.shadow-inner.leading-relaxed.text-center
+.text-center.tracking-wide.leading-relaxed.text-gray-800
   Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
   tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
   quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-.my-10.text-center
-  = link_to 'I am attending', new_attendance_path, class: 'button button-green'
+%h2.mt-16.text-center.text-3xl For guests
 
-.my-10
-  %div{ data: { controller: 'monstas-attendances', 'monstas-attendances': { url: my_attendances_url }} }
+%section#guest.bg-yellow-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
+  - if @visits_count.positive?
+    .my-10.p-8.text-center
+      = link_to 'My visits', visits_path, class: 'py-2 px-5 border rounded'
 
-.my-16.text-center
-  .text-gray-900.uppercase.text-sm.tracking-wider.underline How it works
+  %h3 Visit a host
+  .flex.py-4.flex-wrap.sm:flex-no-wrap.items-center.justify-between
+    .text-center.text-gray-800{ class: 'w-full sm:w-5/12' }
+      .mb-1.text-xs.text-gray-500 Scan
+      .svg-center= raw render_svg 'scan_large.svg'
+      .mt-2.text-xs.text-gray-500
+        Ask your host for the
+        %span.font-bold QR code
+        that automatically takes you to the registration form.
+    .text-center.text-gray-500.self-center{ class: 'w-full sm:w-2/12' }
+      .w-full
+        or
+    .text-center{ class: 'w-full sm:w-5/12' }
+      .w-full
+        = form_with model: @goto_hosts_form, url: root_path do |f|
+          = f.label :host_url_identifier, "Enter your host's token manually", class: 'mb-1 text-xs text-gray-500'
+          = f.text_field :host_url_identifier, class: 'input-text shadow-lg'
+          %span.text-xs.text-pink-400= f.object.errors.messages[:host_url_identifier].join
+          .mt-4
+            = f.submit 'Go', class: 'input-submit'
 
-  %ol.list-outside.my-10
-    %li.my-5
-      Click on
-      %span.text-green-500.px-4.py-1.border.border-green-500.rounded I am attending
-      above.
-    %li.my-5 Fill out the form.
-    %li.my-5
-      Show
-      %b Your token
-      to a coach,
-      %br who will confirm your attendance.
+%h2.mt-24.text-center.text-3xl For hosts
+
+%section#host.bg-orange-100.mb-10.text-center.p-10.shadow-xl.rounded-lg
+  %h3.text-center Register
+  .flex.p-4.flex-wrap.sm:flex-no-wrap.items-center.justify-between
+    .text-center{ class: 'w-full sm:w-5/12' }
+      = link_to new_host_registration_path, class: 'inline-block bg-green-200 p-2 w-full rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-green-300' do
+        .ml-2.svg-center= raw render_svg 'pencil.svg'
+        .text-center Sign up
+    .text-center.text-gray-500{ class: 'w-full sm:w-2/12' }
+      or
+    .text-center{ class: 'w-full sm:w-5/12' }
+      = link_to new_host_session_path, class: 'inline-block bg-purple-100 p-2 w-full rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-purple-200' do
+        .ml-2.svg-center= raw render_svg 'sign_in.svg'
+        .text-center Sign in

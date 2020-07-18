@@ -1,0 +1,6 @@
+%h1.text-center= "Welcome to #{@visit_form.host.name}"
+
+= render 'form', visit_form: @visit_form
+
+.text-center.mt-8
+  = link_to 'Cancel', root_path, class: 'shy-link text-xs'

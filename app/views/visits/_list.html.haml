@@ -1,0 +1,7 @@
+- if visits.present? && visits.any?
+  %ul#visits
+    - visits.each do |visit|
+      %li{ data: { controller: 'synchronize-visit', 'synchronize-visit-token': visit.token } }
+        = render 'list_item', visit: visit
+- else
+  .text-sm.text-gray-500 No visits found
