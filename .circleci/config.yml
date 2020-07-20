@@ -40,6 +40,7 @@ jobs:
       PGUSER: rumo_postgres
       PGPASSWORD: ""
       RAILS_ENV: test
+      RACK_ENV: test
     # A series of steps to run, some are similar to those in "build".
     steps:
       - checkout
