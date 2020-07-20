@@ -13,7 +13,7 @@ gem 'rails'
 gem 'rqrcode'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
-# gem 'redis', '~> 4.0'
+gem 'redis'
 gem 'webpacker'
 
 group :development, :test do
