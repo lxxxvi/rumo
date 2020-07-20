@@ -41,6 +41,7 @@ jobs:
       PGPASSWORD: ""
       RAILS_ENV: test
       RACK_ENV: test
+      NODE_ENV: test
     # A series of steps to run, some are similar to those in "build".
     steps:
       - checkout
@@ -57,6 +58,9 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
+      - run:
+          name: 'echo!'
+          command: 'env | grep ENV'
       - run:
           name: bin/webpack
           command: bin/webpack
