@@ -56,6 +56,9 @@ jobs:
           command: bundle exec rails db:schema:load --trace
       # Run rspec in parallel
       - run:
+          name: 'bin/webpack'
+          command: 'bin/webpack'
+      - run:
           name: bin/test
           command: bin/test
 
