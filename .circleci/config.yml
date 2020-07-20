@@ -3,6 +3,7 @@ version: 2.1 # Use 2.1 to enable using orbs and other features.
 orbs:
   ruby: circleci/ruby@1.0
   node: circleci/node@2
+  browser-tools: circleci/browser-tools@1.0.1
 
 jobs:
   build: # our first job, named "build"
@@ -42,6 +43,7 @@ jobs:
     # A series of steps to run, some are similar to those in "build".
     steps:
       - checkout
+      - browser-tools/install-chrome
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
