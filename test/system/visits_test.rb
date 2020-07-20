@@ -51,7 +51,7 @@ class VisitsTest < ApplicationSystemTestCase
           assert_selector '.text-status-confirmed', count: 0
           @visit_token = find('li:first-child')['data-synchronize-visit-token']
 
-          assert_match /[:alnum:]{5}/, @visit_token, 'Visit token could not be found on guest visits page'
+          assert_match(/[[:alnum:]]{5}/, @visit_token, 'Visit token could not be found on guest visits page')
         end
       end
 
