@@ -40,6 +40,7 @@ jobs:
       PGUSER: rumo_postgres
       PGPASSWORD: ""
       RAILS_ENV: test
+      RACK_ENV: test
     # A series of steps to run, some are similar to those in "build".
     steps:
       - checkout
@@ -56,10 +57,9 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
-      # Run rspec in parallel
       - run:
-          name: 'bin/webpack'
-          command: 'bin/webpack'
+          name: bin/webpack
+          command: bin/webpack
       - run:
           name: bin/test
           command: bin/test

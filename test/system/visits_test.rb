@@ -50,7 +50,8 @@ class VisitsTest < ApplicationSystemTestCase
           assert_selector '.text-status-unconfirmed', count: 1
           assert_selector '.text-status-confirmed', count: 0
           @visit_token = find('li:first-child')['data-synchronize-visit-token']
-          assert @visit_token.present?, 'Visit token could not be found on guest visits page'
+
+          assert_match(/[[:alnum:]]{5}/, @visit_token, 'Visit token could not be found on guest visits page')
         end
       end
 
@@ -58,7 +59,7 @@ class VisitsTest < ApplicationSystemTestCase
         sign_in hosts(:cafe)
         click_on 'Manage visits'
 
-        find("[data-visit-token=#{@visit_token}]").tap do |element|
+        find("[data-visit-token=\"#{@visit_token}\"]").tap do |element|
           element.click # opens the action menu
           element.find_button('Confirm').click
         end

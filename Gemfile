@@ -10,10 +10,10 @@ gem 'puma'
 # gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails'
+gem 'redis'
 gem 'rqrcode'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
-# gem 'redis', '~> 4.0'
 gem 'webpacker'
 
 group :development, :test do
