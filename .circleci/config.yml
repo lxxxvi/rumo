@@ -59,9 +59,6 @@ jobs:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       - run:
-          name: 'echo!'
-          command: 'env | grep ENV'
-      - run:
           name: bin/webpack
           command: bin/webpack
       - run:
