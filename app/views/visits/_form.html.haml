@@ -2,13 +2,26 @@
   = form_with model: visit_form, url: visit_path(visit_form.object.host) do |f|
     .mx-auto{ class: 'w-full sm:w-1/2' }
       .mb-8
-        = f.label :name, class: 'text-gray-500 text-xs tracking-wide'
+        = f.label :contact, class: 'label'
+        = f.text_field :contact, placeholder: "Phone number / home address", class: 'input-text w-full'
+        = render 'shared/forms/field_error_messages', form: visit_form, column: :contact
+        .mt-1.text-gray-500.text-xs
+          This will
+          %em not
+          be shown entirely to the host in the first place.
+
+      .mb-8
+        = f.label :name, class: 'label'
         = f.text_field :name, placeholder: "optional", class: 'input-text w-full'
         = render 'shared/forms/field_error_messages', form: visit_form, column: :name
+        .mt-1.text-gray-500.text-xs This is shown to the host, it's optional.
+
+
       .mb-8
-        = f.label :contact, class: 'text-gray-500 text-xs tracking-wide'
-        = f.text_field :contact, placeholder: "Please provide an email or phone", class: 'input-text w-full'
-        = render 'shared/forms/field_error_messages', form: visit_form, column: :contact
+        = f.label :notes, class: 'label'
+        = f.text_field :notes, placeholder: 'optional', class: 'input-text w-full'
+        .mt-1.text-gray-500.text-xs Use this field as indicated by the host.
+
 
       .actions.mt-10
         = f.submit 'Submit my contact data', class: "input-submit"

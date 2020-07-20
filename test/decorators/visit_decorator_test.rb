@@ -16,4 +16,8 @@ class VisitDecoratorTest < ActiveSupport::TestCase
   test '#visited_at_in_hosts_time_zone' do
     assert_equal Time.new(2020, 1, 1, 14, 0, 0, '+01:00'), @visit.decorate.visited_at_in_hosts_time_zone
   end
+
+  test '#display_contact_scrambled_full' do
+    assert_equal '******m.jim', @visit.decorate.display_contact_scrambled_full
+  end
 end

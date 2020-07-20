@@ -21,18 +21,21 @@
   %div{ data: { controller: 'admin-visits' } }
     - @visits.each do |visit|
       .my-4.rounded{ class: "admin-visit-status-#{visit.status}", data: { action: 'click->admin-visits#toggleActionMenu', visit: { token: visit.token } } }
-        .flex.flex-wrap
-          .w-full.px-5.pt-3
+        .flex.flex-wrap.px-5.pt-3
+          .w-full
             .text-xs.text-gray-500= visit.decorate.display_visited_at_in_hosts_time_zone
-          .w-full.px-5.py-1
+          .w-full.my-1
             .text-2xl= visit.token
-          .w-full.px-5.pb-3
+          - if visit.notes.present?
+            .w-full
+              .text-sm= visit.notes
+          .w-full.my-2
             .flex
               .flex-auto
-                .text-red-600.text-xs.tracking-wider
+                .text-pink-600.text-xs.tracking-wider
                   - if visit.name.present?
                     = "#{visit.name} | "
-                  = visit.contact
+                  = visit.decorate.display_contact_scrambled_full
               .flex-auto.text-right.text-sm{ class: "text-status-#{visit.status}"}
                 = visit.decorate.display_status
           - unless visit.confirmed?

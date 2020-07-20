@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_06_29_084417) do
     t.string "token", null: false
     t.string "name"
     t.string "contact", null: false
+    t.string "notes"
     t.datetime "confirmed_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
