@@ -59,7 +59,7 @@ class VisitsTest < ApplicationSystemTestCase
         sign_in hosts(:cafe)
         click_on 'Manage visits'
 
-        find("[data-visit-token=#{@visit_token}]").tap do |element|
+        find("[data-visit-token=\"#{@visit_token}\"]").tap do |element|
           element.click # opens the action menu
           element.find_button('Confirm').click
         end
