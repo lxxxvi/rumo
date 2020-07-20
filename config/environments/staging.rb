@@ -1,5 +1,5 @@
 Rails.application.configure do
-  routes.default_url_options = { host: 'rumo.herokuapp.com' }
+  routes.default_url_options = { host: 'rumo-staging.herokuapp.com' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
