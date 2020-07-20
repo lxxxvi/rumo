@@ -1,20 +1,26 @@
 - if visit&.persisted?
-  %div
-    .shadow.bg-white.rounded.mb-8{ class: "border-status-#{visit.status}" }
-      .flex.flex-wrap
-        .w-full.px-5.pt-5
-          .text-xs.text-gray-500
-            %time{ datetime: visit.decorate.visited_at_in_hosts_time_zone, title: visit.decorate.visited_at_in_hosts_time_zone }= visit.decorate.display_visited_at_in_hosts_time_zone
-        .w-full.px-5.py-1
-          .text-xs= visit.host.name
-        .w-full.px-5.py-1
-          .text-2xl= visit.token
-        .w-full.px-5.pb-5
-          .flex
-            .flex-auto
-              .text-red-600.text-xs.tracking-wider
-                - if visit.name.present?
-                  = "#{visit.name} | "
-                = visit.contact
-            .flex-auto.text-right.text-sm{ class: "text-status-#{visit.status}" }
-              = visit.decorate.display_status
+  .shadow-lg.bg-white.rounded.mb-8{ class: "border-status-#{visit.status}" }
+    .flex.flex-wrap.px-5.py-3
+      .w-full
+        .text-xs.text-gray-500= visit.decorate.display_visited_at_in_hosts_time_zone
+      .w-full.mt-2
+        .text-normal.uppercase.text-pink-400.tracking-wider= visit.host.name
+      .w-full.my-4
+        .text-xs.text-gray-400 Token
+        .text-3xl= visit.token
+      .w-full.my-4
+        .text-xs.text-pink-500.mt-1
+          - if visit.name.present?
+            = "#{visit.name} | "
+          = visit.decorate.display_contact_scrambled_full
+      - if visit.notes.present?
+        .w-full.my-3
+          .text-xs.text-gray-400
+            Notes
+          .text-sm.tracking-wide= visit.notes
+
+      .w-full.my-3
+        .text-xs.text-gray-400
+          Status
+        .text-sm.mt-1{ class: "text-status-#{visit.status}" }
+          = visit.decorate.display_status

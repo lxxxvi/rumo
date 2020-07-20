@@ -1,6 +1,6 @@
 class VisitForm
   include ActiveModel::Model
-  attr_reader :object, :params, :name, :contact, :uuid
+  attr_reader :object, :params, :name, :contact, :notes, :uuid
 
   delegate :host, to: :object
 
@@ -9,7 +9,7 @@ class VisitForm
   def initialize(object, params = {})
     @object = object
     @params = params
-    @name, @contact, @uuid = params.values_at(:name, :contact, :uuid)
+    @name, @contact, @notes, @uuid = params.values_at(:name, :contact, :notes, :uuid)
   end
 
   def save
@@ -18,6 +18,7 @@ class VisitForm
     object.attributes = {
       name: name,
       contact: contact,
+      notes: notes,
       uuid: uuid
     }
     object.save!

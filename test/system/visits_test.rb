@@ -24,9 +24,13 @@ class VisitsTest < ApplicationSystemTestCase
   end
 
   test 'visitor submits form, valid params' do
-    visit_cafe_with(name: 'Dwight Schrute', contact: '+1234-0000')
+    visit_cafe_with(name: 'Dwight Schrute', contact: '+1234-0000', notes: 'Table 34')
     assert_selector 'h1', text: 'My visits'
-    assert_selector 'ul#visits li', count: 1
+    assert_selector 'ul#visits li', count: 1 do |element|
+      element.assert_text('Dwight Schrute')
+      element.assert_text('*****-0000')
+      element.assert_text('Table 34')
+    end
   end
 
   test 'visitor sees only own visits, 0 visits' do
@@ -80,11 +84,12 @@ class VisitsTest < ApplicationSystemTestCase
 
   private
 
-  def visit_cafe_with(name:, contact:)
+  def visit_cafe_with(name:, contact:, notes: nil)
     visit visit_path(host_url_identifier: 'cafe')
 
     fill_in 'Name', with: name
     fill_in 'Contact', with: contact
+    fill_in 'Notes', with: notes
 
     click_on 'Submit my contact data'
   end

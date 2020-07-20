@@ -7,6 +7,7 @@ class CreateVisits < ActiveRecord::Migration[6.0]
       t.string :token, null: false
       t.string :name, null: true
       t.string :contact, null: false
+      t.string :notes, null: true
       t.datetime :confirmed_at, null: true
 
       t.index %i[host_id token], unique: true
