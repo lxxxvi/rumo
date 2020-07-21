@@ -17,7 +17,7 @@ class Admin::HomeTest < ApplicationSystemTestCase
   test 'signs out' do
     sign_in hosts(:cafe)
     click_on 'Sign out'
-    assert_selector 'h1', text: 'Welcome'
+    assert_selector 'h1', text: 'Rumo is a digital guestlist'
     visit admin_root_path
     assert_selector 'h1', text: 'Host sign in'
   end

@@ -6,6 +6,8 @@ class HomeController < ApplicationController
     redirect_to visit_path(@goto_hosts_form.host) if @goto_hosts_form.validatable? && @goto_hosts_form.valid?
   end
 
+  def about; end
+
   private
 
   def goto_hosts_params

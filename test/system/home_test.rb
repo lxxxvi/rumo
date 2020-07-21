@@ -4,7 +4,7 @@ class HomeTest < ApplicationSystemTestCase
   test 'elements on public home page' do
     visit '/'
 
-    assert_selector 'h1', text: 'Welcome'
+    assert_selector 'h1', text: 'Rumo is a digital guestlist'
     assert_selector 'h2', text: 'For guest'
     assert_selector 'h2', text: 'For hosts'
 
@@ -20,5 +20,17 @@ class HomeTest < ApplicationSystemTestCase
       assert_link 'Sign up'
       assert_link 'Sign in'
     end
+  end
+
+  test 'elements on about page' do
+    visit '/'
+
+    click_on 'Read more'
+
+    assert_selector 'h1', text: 'About'
+    assert_selector 'h2', text: 'Privacy and transparency'
+    assert_selector 'h2', text: 'Contact'
+
+    assert_link 'Back', href: '/'
   end
 end
