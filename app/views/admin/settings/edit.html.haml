@@ -1,0 +1,21 @@
+.text-center
+  .mb-5
+    = render 'shared/buttons/back', url: admin_root_path
+  %h1 Account settings
+
+  - if flash[:notice]
+    .flash.flash-notice.text-xs.bg-blue-100.tracking-wider.p-4.shadow-lg.inline.rounded
+      = flash[:notice]
+
+  = form_with model: @settings_form, url: admin_settings_path do |f|
+    .my-8
+      = f.label :name, class: 'label'
+      = f.text_field :name, class: 'input-text'
+      = render 'shared/forms/field_error_messages', form: @settings_form, column: :name
+
+    .actions.my-10
+      = f.submit 'Edit settings', class: 'input-submit'
+
+    - if @settings_form.errors.any?
+      .my-5
+        = link_to 'Cancel', admin_settings_path, class: 'shy-link'
