@@ -6,6 +6,7 @@ class Host < ApplicationRecord
   has_many :visits, dependent: :destroy
 
   validates :name, presence: true
+  validates :name, uniqueness: true
 
   before_validation :initialize_url_identifier
 

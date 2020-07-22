@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       resource :rejection, only: :create, module: :visits
     end
 
-    resource 'qr_code', only: :show
+    resource :qr_code, only: :show
+    resource :settings, only: %i[edit update]
     root to: 'home#index'
   end
 

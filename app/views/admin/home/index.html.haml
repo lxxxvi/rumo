@@ -8,14 +8,13 @@
       = link_to admin_qr_code_path, class: 'py-3 px-5 bg-pink-500 rounded w-full sm:w-1/3 block shadow-lg mx-auto transition duration-200 ease-in-out hover:bg-pink-300' do
         .svg-center= raw render_svg('qr.svg')
         .my-1 Show QR code
-    .text-sm.mt-8
-      .text-gray-600.tracking-wide
-        %p
-          Let your customers register themselves when they visit your business.
-        %p
-          Scanning the QR code takes your customers to the online registration form.
-        %p
-          Consider printing the QR code and put it on display.
+    .text-sm.mt-8.text-gray-600.tracking-wide
+      %p
+        Let your customers register themselves when they visit your business.
+      %p
+        Scanning the QR code takes your customers to the online registration form.
+      %p
+        Consider printing the QR code and put it on display.
 
   .w-full.text-center.my-10.p-10.bg-yellow-100.shadow-2xl.rounded.border.border-gray-200
     .block
@@ -30,6 +29,13 @@
           .inline.font-bold= "#{@unconfirmed_host_visits_count} unconfirmed"
           = "#{ "visit".pluralize(@unconfirmed_host_visits_count) }."
 
+  .w-full.text-center.my-10.p-10.bg-blue-100.shadow-2xl.rounded.border.border-gray-200
+    .block
+      = link_to edit_admin_settings_path, class: 'py-3 px-5 bg-blue-300 rounded w-full sm:w-1/3 block shadow-lg mx-auto transition duration-200 ease-in-out hover:bg-blue-400' do
+        .svg-center= raw render_svg('settings.svg')
+        .my-1 Account settings
+    .text-sm.mt-8.text-gray-600.tracking-wide
+      Change your settings
   .w-full.content
     .max-w-screen-sm.sm:mx-auto.mt-10.mb-20
       - if host_signed_in?
@@ -37,3 +43,5 @@
           = link_to destroy_host_session_path, method: :delete, class: 'inline-block bg-gray-100 p-3 sm:w-1/5 rounded-lg shadow-xl transition duration-200 ease-in-out hover:bg-gray-200' do
             .ml-2.svg-center= raw render_svg 'sign_out.svg'
             .text-center Sign out
+    .text-sm.mt-8.text-gray-600.tracking-wide
+      Change your public name
