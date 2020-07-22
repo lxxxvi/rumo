@@ -1,25 +1,27 @@
-%h1.text-center.text-3xl Welcome
-
-.text-center.tracking-wide.leading-relaxed.text-gray-800
-  %p.text-xl
+.text-center
+  %h1.text-center.text-4xl.mb-0
     Rumo is a digital
     %b guestlist
-    %br
+  %p.text-xl.text-gray-800
     which can be used for COVID-19 precautionary measures.
 
+.text-center.tracking-wide.leading-relaxed.text-gray-800.my-16
   %p.my-6
-    %b.text-yellow-700.block Guests
+    %b.block.tracking-wider.text-purple-500 Guests
     submit their contact data at the beginning of their visit.
 
   %p.my-6
-    %b.text-orange-500.block Hosts
+    %b.block.tracking-wider.text-purple-500 Hosts
     validate and confirm visits if required.
 
   %p.my-6
-    %b.text-pink-500.block Rumo
+    %b.block.tracking-wider.text-purple-500 Rumo
     keeps sensitive data
     %b private
     until they are needed for contact tracing.
+
+  %p.mt-6
+    = link_to 'Read more', about_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-200 ease-in-out'
 
 %h2.mt-16.text-center.text-3xl For guests
 
