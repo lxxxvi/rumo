@@ -35,7 +35,7 @@ class HostsTest < ApplicationSystemTestCase
     assert_equal "can't be blank", error_messages.first
   end
 
-  test 'host resets password' do
+  test 'host requests new and resets password' do
     visit new_host_session_path
 
     click_on 'Forgot your password?'
@@ -49,9 +49,61 @@ class HostsTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Host sign in'
     assert_selector '.flash.flash-notice',
                     text: 'You will receive an email with instructions on how to reset your password'
+
+    sent_mail = ActionMailer::Base.deliveries.last
+
+    assert_equal 'rumo@mail.mail', sent_mail.from.first
+    assert_equal 'rumo@mail.mail', sent_mail.reply_to.first
+    assert_equal 'host@cinema.hollywood', sent_mail.to.first
+    assert_equal 'Reset password instructions', sent_mail.subject
+
+    edit_password_link = Capybara.string(sent_mail.body.raw_source).find_link('Change my password')
+    assert edit_password_link[:href].starts_with?('http://rumo.test/hosts/password/edit?reset_password_token=')
+
+    digested_reset_password_token = extract_reset_password_token_from_url(edit_password_link[:href])
+
+    visit edit_host_password_path(reset_password_token: digested_reset_password_token)
+
+    assert_selector 'h1', text: 'Change your password'
+    fill_in 'Password', with: 'new-secure-password'
+
+    click_on 'Change my password'
+
+    assert_selector 'h1', text: 'Admin area'
   end
 
   test 'host resets password, invalid params' do
+    host = hosts(:cinema)
+    digest, reset_password_token = Devise.token_generator.generate(host.class, :reset_password_token)
+    host.update!(reset_password_token: reset_password_token, reset_password_sent_at: 1.minute.ago)
+
+    visit edit_host_password_path(reset_password_token: digest)
+
+    click_on 'Change my password'
+
+    assert_equal 1, find_all('.field_with_errors input').count
+    assert_equal "can't be blank", find('.error-message').text
+  end
+
+  test 'host resets password, invalid token' do
+    visit edit_host_password_path(reset_password_token: 'invalid-token')
+    fill_in 'Password', with: 'new-password'
+    click_on 'Change my password'
+    assert_equal 'Reset password token is invalid', find('.error-message').text
+  end
+
+  test 'host resets password, expired token' do
+    host = hosts(:cinema)
+    digest, reset_password_token = Devise.token_generator.generate(host.class, :reset_password_token)
+    host.update!(reset_password_token: reset_password_token, reset_password_sent_at: 6.hours.ago)
+
+    visit edit_host_password_path(reset_password_token: digest)
+    fill_in 'Password', with: 'new-password'
+    click_on 'Change my password'
+    assert_equal 'Reset password token has expired, please request a new one', find('.error-message').text
+  end
+
+  test 'host requests new password, invalid params' do
     visit new_host_password_path
 
     # empty form
@@ -88,5 +140,11 @@ class HostsTest < ApplicationSystemTestCase
 
     assert_selector 'h1', text: 'Host sign in'
     assert_selector '.flash.flash-alert', text: 'Invalid Email or password.'
+  end
+
+  private
+
+  def extract_reset_password_token_from_url(url)
+    Rack::Utils.parse_query(URI(url).query)['reset_password_token']
   end
 end
