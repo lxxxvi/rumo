@@ -5,7 +5,7 @@ env:
   POSTGRES_PASSWORD: "postgres"
 
 name: Continuous Integration
-on: [pull_request]
+on: [push,pull_request]
 
 jobs:
   bundle_install:
@@ -114,6 +114,11 @@ jobs:
       - name: Use gems from vendor/bundle
         run: bundle config path vendor/bundle
 
+      - name: Create master.key
+        env:
+          RAILS_MASTER_KEY_FOR_TEST: ${{ secrets.RAILS_MASTER_KEY_FOR_TEST }}
+        run: echo "${RAILS_MASTER_KEY_FOR_TEST}" > ./config/master.key
+
       - name: Setup database
         run: |
           cp config/database.yml.github-actions config/database.yml
@@ -162,6 +167,11 @@ jobs:
 
       - name: Use gems from vendor/bundle
         run: bundle config path vendor/bundle
+
+      - name: Create master.key
+        env:
+          RAILS_MASTER_KEY_FOR_TEST: ${{ secrets.RAILS_MASTER_KEY_FOR_TEST }}
+        run: echo "${RAILS_MASTER_KEY_FOR_TEST}" > ./config/master.key
 
       - name: Setup database
         run: |

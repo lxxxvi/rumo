@@ -42,8 +42,13 @@ Metrics/MethodLength:
 
 Metrics/BlockLength:
   Exclude:
+    - 'config/environments/**/*'
     - 'lib/tasks/*'
     - 'test/**/*'
+
+Metrics/ClassLength:
+  Exclude:
+    - 'test/system/**/*'
 
 Rails:
   Enabled: true

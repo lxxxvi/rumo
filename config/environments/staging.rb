@@ -60,6 +60,13 @@ Rails.application.configure do
   config.i18n.fallbacks = true
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+
+  config.action_mailer.default_url_options = default_url_options
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = Rails.application.credentials.action_mailer[:smtp_settings]
+  config.action_mailer.default_options = Rails.application.credentials.action_mailer[:default_options]
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -104,6 +111,4 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
-
-  config.action_mailer.default_url_options = default_url_options
 end

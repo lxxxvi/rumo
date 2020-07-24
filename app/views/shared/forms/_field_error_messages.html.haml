@@ -1,3 +1,7 @@
+- full_messages = defined?(full_messages) && full_messages == true
 - if form.errors.key?(column)
   .text-pink-400.text-xs.mt-1.error-message
-    = form.errors.messages[column].join(', ')
+    - if full_messages
+      = form.errors.full_messages_for(column).join(', ')
+    - else
+      = form.errors.messages[column].join(', ')
