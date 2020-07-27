@@ -2,9 +2,13 @@ require 'test_helper'
 
 class Admin::SettingsFormTest < ActiveSupport::TestCase
   test 'save' do
-    form = form_with(name: 'New name')
+    form = form_with(name: 'New name', url_identifier: 'cafe-cool')
+
     assert form.save
-    assert_equal 'New name', hosts(:cafe).reload.name
+    host = hosts(:cafe).reload
+
+    assert_equal 'New name', host.name
+    assert_equal 'cafe-cool', host.url_identifier
   end
 
   test 'save, missing name' do
@@ -25,9 +29,17 @@ class Admin::SettingsFormTest < ActiveSupport::TestCase
     assert_equal 'has already been taken', form.errors[:name].first
   end
 
+  test 'invalid url_identifier' do
+    form = form_with(url_identifier: 'Cafe Cool')
+    assert_not form.valid?
+
+    assert_equal 1, form.errors[:url_identifier].count
+    assert_equal 'may only contain alphanumeric characters and dashes', form.errors[:url_identifier].first
+  end
+
   private
 
-  def form_with(host: hosts(:cafe), name: '')
-    Admin::SettingsForm.new(host, name: name)
+  def form_with(host: hosts(:cafe), name: '', url_identifier: '')
+    Admin::SettingsForm.new(host, name: name, url_identifier: url_identifier)
   end
 end

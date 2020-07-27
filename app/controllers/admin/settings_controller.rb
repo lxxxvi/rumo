@@ -10,13 +10,13 @@ class Admin::SettingsController < Admin::BaseController
       flash[:notice] = 'Settings updated successfully.'
       redirect_to edit_admin_settings_path
     else
-      render :show
+      render :edit
     end
   end
 
   private
 
   def admin_settings_params
-    params.require(:admin_settings).permit(:name)
+    params.require(:admin_settings).permit(:name, :url_identifier)
   end
 end

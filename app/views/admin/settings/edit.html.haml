@@ -13,9 +13,31 @@
       = f.text_field :name, class: 'input-text'
       = render 'shared/forms/field_error_messages', form: @settings_form, column: :name
 
+    .my-8
+      %div{ data: { controller: 'visit-url-preview' } }
+        = f.label :url_identifier, 'URL identifier', class: 'label'
+        = f.text_field :url_identifier, class: 'input-text', data: { action: 'keyup->visit-url-preview#updateSimulation', target: 'visit-url-preview.urlIdentifierInput' }
+        = render 'shared/forms/field_error_messages', form: @settings_form, column: :url_identifier
+
+        .text-gray-500.text-xs.my-4
+          The URL identifier is the last part your public URL:
+
+          .my-2.text-gray-600.font-mono<
+            - *base_url, url_identifier = @settings_form.calculated_visit_url.rpartition('/')
+            = "#{base_url.join}"
+            %output.inline.font-bold{ data: { target: 'visit-url-preview.urlIdentifierOutput' } }>= url_identifier
+
+          It may only contain alphanumeric characters and dashes.
+
+        .text-gray-600.text-xs
+          Note that your
+          %b QR code changes
+          if you change the URL identifier.
+
+
     .actions.my-10
       = f.submit 'Edit settings', class: 'input-submit'
 
     - if @settings_form.errors.any?
       .my-5
-        = link_to 'Cancel', admin_settings_path, class: 'shy-link'
+        = link_to 'Cancel', edit_admin_settings_path, class: 'shy-link'
