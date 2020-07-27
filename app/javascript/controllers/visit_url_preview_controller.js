@@ -4,10 +4,10 @@ export default class extends Controller {
   static targets = ["urlIdentifierInput", "urlIdentifierOutput"];
 
   connect() {
-    this.updateSimulation();
+    this.updatePreview();
   }
 
-  updateSimulation() {
+  updatePreview() {
     this.urlIdentifierOutputTarget.innerHTML = this.urlIdentifierInputTarget.value;
   }
 }

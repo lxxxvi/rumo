@@ -16,7 +16,7 @@
     .my-8
       %div{ data: { controller: 'visit-url-preview' } }
         = f.label :url_identifier, 'URL identifier', class: 'label'
-        = f.text_field :url_identifier, class: 'input-text', data: { action: 'keyup->visit-url-preview#updateSimulation', target: 'visit-url-preview.urlIdentifierInput' }
+        = f.text_field :url_identifier, class: 'input-text', data: { action: 'keyup->visit-url-preview#updatePreview', target: 'visit-url-preview.urlIdentifierInput' }
         = render 'shared/forms/field_error_messages', form: @settings_form, column: :url_identifier
 
         .text-gray-500.text-xs.my-4
