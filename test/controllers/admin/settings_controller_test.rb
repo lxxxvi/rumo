@@ -16,9 +16,14 @@ class Admin::SettingsControllerTest < ActionDispatch::IntegrationTest
   test 'patch update' do
     sign_in hosts(:cafe)
 
-    assert_changes -> { hosts(:cafe).reload.name }, to: 'Cafe superiore' do
-      patch admin_settings_path, params: { admin_settings: { name: 'Cafe superiore' } }
+    host = hosts(:cafe)
+
+    assert_changes -> { host.reload.updated_at } do
+      patch admin_settings_path, params: { admin_settings: { name: 'Cafe superiore', url_identifier: 'cafe-cool' } }
     end
+
+    assert_equal 'Cafe superiore', host.name
+    assert_equal 'cafe-cool', host.url_identifier
 
     assert_redirected_to edit_admin_settings_path
     follow_redirect!
@@ -28,7 +33,7 @@ class Admin::SettingsControllerTest < ActionDispatch::IntegrationTest
   test 'cannot patch update, if not signed in' do
     sign_out hosts(:cafe)
 
-    assert_no_changes -> { hosts(:cafe).reload.name } do
+    assert_no_changes -> { hosts(:cafe).reload.updated_at } do
       patch admin_settings_path, params: { admin_settings: { name: 'Cafe superiore' } }
     end
 

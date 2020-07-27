@@ -14,4 +14,43 @@ class Admin::SettingsTest < ApplicationSystemTestCase
       click_on 'Edit settings'
     end
   end
+
+  test 'admin changes url identifier' do
+    sign_in hosts(:cafe)
+
+    click_on 'Account settings'
+
+    assert_changes -> { find_field('URL identifier').value }, to: 'cafe-cool' do
+      fill_in 'URL identifier', with: 'cafe-cool'
+      click_on 'Edit settings'
+    end
+  end
+
+  test 'admin submits invalid form' do
+    sign_in hosts(:cafe)
+
+    click_on 'Account settings'
+    fill_in 'Name', with: ''
+    fill_in 'URL identifier', with: ''
+
+    click_on 'Edit settings'
+
+    assert_selector '.field_with_errors', minimum: 1
+
+    assert_link 'Cancel', href: '/admin/settings/edit'
+  end
+
+  test 'visit url preview' do
+    Capybara.using_driver(:selenium_chrome_headless) do
+      sign_in hosts(:cafe)
+
+      click_on 'Account settings'
+
+      url_identifier_field = find_field('URL identifier')
+
+      assert_changes -> { find('output').value }, from: 'cafe', to: 'cafe-cool' do
+        url_identifier_field.send_keys '-cool'
+      end
+    end
+  end
 end

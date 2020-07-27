@@ -8,6 +8,9 @@ class Host < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  validates :url_identifier, presence: true
+  validates :url_identifier, uniqueness: true
+
   before_validation :initialize_url_identifier
 
   def visit_url
