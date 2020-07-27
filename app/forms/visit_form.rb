@@ -21,6 +21,8 @@ class VisitForm
       notes: notes,
       uuid: uuid
     }
+
+    object.set_confirmed_at if host.auto_confirm_visits?
     object.save!
   end
 

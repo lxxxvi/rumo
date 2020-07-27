@@ -22,10 +22,13 @@ class Visit < ApplicationRecord
     confirmed_at.present?
   end
 
-  def confirm!
-    return if confirmed?
+  def set_confirmed_at
+    self.confirmed_at ||= Time.zone.now
+  end
 
-    update!(confirmed_at: Time.zone.now)
+  def confirm!
+    set_confirmed_at
+    save!
   end
 
   def status
