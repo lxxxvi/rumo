@@ -3,7 +3,7 @@ module VisitsRetentionService
 
   RETENTION_PERIOD = 14.days.freeze
 
-  def cleanup!
+  def remove_expired!
     Visit.where('visited_at < :time', time: retention_time).delete_all
   end
 
