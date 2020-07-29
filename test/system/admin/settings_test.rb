@@ -26,13 +26,18 @@ class Admin::SettingsTest < ApplicationSystemTestCase
     end
   end
 
-  test 'admin changes auto-confirm' do
+  test 'admin toggles auto-confirm' do
     sign_in hosts(:cafe)
 
     click_on 'Account settings'
 
     assert_changes -> { find_field('Auto-confirm visits').checked? }, to: true do
       check 'Auto-confirm visits'
+      click_on 'Edit settings'
+    end
+
+    assert_changes -> { find_field('Auto-confirm visits').checked? }, to: false do
+      uncheck 'Auto-confirm visits'
       click_on 'Edit settings'
     end
   end

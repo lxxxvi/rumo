@@ -12,7 +12,7 @@ class Admin::SettingsForm
     @params = params
     @name = params[:name] || object.name
     @url_identifier = params[:url_identifier] || object.url_identifier
-    @auto_confirm_visits = params[:auto_confirm_visits] == '1' || object.auto_confirm_visits
+    @auto_confirm_visits = params[:auto_confirm_visits] || object.auto_confirm_visits
   end
 
   def save
