@@ -34,6 +34,11 @@
           %b QR code changes
           if you change the URL identifier.
 
+    .my-8
+      = f.label :auto_confirm_visits, 'Auto-confirm visits', class: 'label'
+      = f.check_box :auto_confirm_visits, class: 'input-text'
+      .text-gray-500.text-xs.mt-1
+        When enabled, visits are automatically confirmed.
 
     .actions.my-10
       = f.submit 'Edit settings', class: 'input-submit'
