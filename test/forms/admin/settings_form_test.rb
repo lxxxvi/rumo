@@ -2,13 +2,14 @@ require 'test_helper'
 
 class Admin::SettingsFormTest < ActiveSupport::TestCase
   test 'save' do
-    form = form_with(name: 'New name', url_identifier: 'cafe-cool')
+    form = form_with(name: 'New name', url_identifier: 'cafe-cool', auto_confirm_visits: '1')
 
     assert form.save
     host = hosts(:cafe).reload
 
     assert_equal 'New name', host.name
     assert_equal 'cafe-cool', host.url_identifier
+    assert host.auto_confirm_visits
   end
 
   test 'save, missing name' do
@@ -39,7 +40,7 @@ class Admin::SettingsFormTest < ActiveSupport::TestCase
 
   private
 
-  def form_with(host: hosts(:cafe), name: '', url_identifier: '')
-    Admin::SettingsForm.new(host, name: name, url_identifier: url_identifier)
+  def form_with(host: hosts(:cafe), name: '', url_identifier: '', auto_confirm_visits: '')
+    Admin::SettingsForm.new(host, name: name, url_identifier: url_identifier, auto_confirm_visits: auto_confirm_visits)
   end
 end

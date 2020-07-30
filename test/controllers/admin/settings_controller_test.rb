@@ -19,11 +19,19 @@ class Admin::SettingsControllerTest < ActionDispatch::IntegrationTest
     host = hosts(:cafe)
 
     assert_changes -> { host.reload.updated_at } do
-      patch admin_settings_path, params: { admin_settings: { name: 'Cafe superiore', url_identifier: 'cafe-cool' } }
+      patch admin_settings_path,
+            params: {
+              admin_settings: {
+                name: 'Cafe superiore',
+                url_identifier: 'cafe-cool',
+                auto_confirm_visits: '1'
+              }
+            }
     end
 
     assert_equal 'Cafe superiore', host.name
     assert_equal 'cafe-cool', host.url_identifier
+    assert host.auto_confirm_visits
 
     assert_redirected_to edit_admin_settings_path
     follow_redirect!
