@@ -4,6 +4,7 @@ jim_cafe_20200101:
   visited_at: 2020-01-01T13:00:00
   contact: 'jim@jim.jim'
   token: 'JIMCAFETOKEN'
+  notes: 'Table 23'
 
 pam_cafe_20200101:
   host: cafe

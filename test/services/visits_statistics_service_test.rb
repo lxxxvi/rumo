@@ -15,12 +15,12 @@ class VisitsStatisticsServiceTest < ActiveSupport::TestCase
   end
 
   test '#statistics, 1 confirmed, 1 unconfirmed' do
-    @host.visits.first.confirm!
+    confirm_visit!(@host.visits.first)
     assert_statistics confirmed: 1, unconfirmed: 1
   end
 
   test '#statistics, 2 confirmed, 0 unconfirmed' do
-    @host.visits.map(&:confirm!)
+    @host.visits.map(&method(:confirm_visit!))
     assert_statistics confirmed: 2, unconfirmed: 0
   end
 
@@ -31,5 +31,10 @@ class VisitsStatisticsServiceTest < ActiveSupport::TestCase
       assert_equal confirmed, service.statistics.confirmed
       assert_equal unconfirmed, service.statistics.unconfirmed
     end
+  end
+
+  def confirm_visit!(visit)
+    visit.set_confirmed_at
+    visit.save!
   end
 end

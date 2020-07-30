@@ -26,11 +26,6 @@ class Visit < ApplicationRecord
     self.confirmed_at ||= Time.zone.now
   end
 
-  def confirm!
-    set_confirmed_at
-    save!
-  end
-
   def status
     return :rejected if destroyed? || new_record?
     return :confirmed if confirmed?
