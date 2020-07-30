@@ -4,6 +4,7 @@ git_source(:github) { |_repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'bugsnag'
 gem 'devise'
 gem 'haml-rails', '~> 2.0'
 gem 'puma'
