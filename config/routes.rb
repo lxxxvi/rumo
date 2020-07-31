@@ -7,11 +7,7 @@ Rails.application.routes.draw do
   get :visits, to: 'visits#index'
 
   namespace :admin do
-    resources :visits, only: :index, param: :token do
-      resource :confirmation, only: :create, module: :visits
-      resource :rejection, only: :create, module: :visits
-    end
-
+    resources :visits, only: %i[index update destroy], param: :token
     resource :qr_code, only: :show
     resource :settings, only: %i[edit update]
     root to: 'home#index'

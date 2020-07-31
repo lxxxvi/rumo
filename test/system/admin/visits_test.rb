@@ -19,7 +19,7 @@ class Admin::VisitsTest < ApplicationSystemTestCase
     sign_in_and_goto_manage_visits
 
     assert_difference -> { find_visit_list_items.size }, -1 do
-      find_visit_list_items.first.find_button('Remove').click
+      find_visit_list_items.first.click_on 'Remove'
     end
 
     assert_link '1 unconfirmed'
@@ -32,14 +32,20 @@ class Admin::VisitsTest < ApplicationSystemTestCase
     click_on '2 unconfirmed'
 
     assert_difference -> { find_visit_list_items.size }, -1 do
-      visits(:jim_cafe_20200101).confirm!
+      visit = visits(:jim_cafe_20200101)
+      visit.set_confirmed_at
+      visit.save!
+
       refresh
     end
 
     click_on '1 confirmed'
 
     assert_difference -> { find_visit_list_items.size }, 1 do
-      visits(:pam_cafe_20200101).confirm!
+      visit = visits(:pam_cafe_20200101)
+      visit.set_confirmed_at
+      visit.save!
+
       refresh
     end
   end

@@ -39,7 +39,8 @@ class VisitTest < ActiveSupport::TestCase
   test '.confirmed / .unconfirmed' do
     assert_difference -> { Visit.confirmed.count }, 1 do
       assert_difference -> { Visit.unconfirmed.count }, -1 do
-        @visit.confirm!
+        @visit.set_confirmed_at
+        @visit.save!
       end
     end
   end
@@ -54,12 +55,13 @@ class VisitTest < ActiveSupport::TestCase
     assert_equal 'JIMCAFETOKEN', @visit.to_param
   end
 
-  test '#confirm!, #confirmed? and #status' do
+  test '#set_confirmed_at!, #confirmed? and #status' do
     assert_equal :rejected, Visit.new.status
 
     assert_changes -> { @visit.status }, from: :unconfirmed, to: :confirmed do
       assert_changes -> { @visit.confirmed? }, to: true do
-        @visit.confirm!
+        @visit.set_confirmed_at
+        @visit.save!
       end
     end
   end

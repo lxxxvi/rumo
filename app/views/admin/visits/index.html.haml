@@ -20,33 +20,7 @@
 - if @visits.any?
   %div{ data: { controller: 'admin-visits' } }
     - @visits.each do |visit|
-      .my-4.rounded{ class: "admin-visit-status-#{visit.status}", data: { action: 'click->admin-visits#toggleActionMenu', visit: { token: visit.token } } }
-        .flex.flex-wrap.px-5.pt-3
-          .w-full
-            .text-xs.text-gray-500= visit.decorate.display_visited_at_in_hosts_time_zone
-          .w-full.my-1
-            .text-2xl= visit.token
-          - if visit.notes.present?
-            .w-full
-              .text-sm= visit.notes
-          .w-full.my-2
-            .flex
-              .flex-auto
-                .text-pink-600.text-xs.tracking-wider
-                  - if visit.name.present?
-                    = "#{visit.name} | "
-                  = visit.decorate.display_contact_scrambled_full
-              .flex-auto.text-right.text-sm{ class: "text-status-#{visit.status}"}
-                = visit.decorate.display_status
-          - unless visit.confirmed?
-            .w-full{ data: { target: 'admin-visits.actionMenu'} }
-              .flex.flex-wrap.text-center.sm:flex-no-wrap
-                .w-full.p-3
-                  = form_with model: nil, url: admin_visit_confirmation_path(visit) do |f|
-                    = f.submit 'Confirm', class: 'cursor-pointer w-full rounded bg-green-500 hover:bg-green-600 transition duration-200 ease-in-out text-sm text-white tracking-wider'
-                .w-full.p-3
-                  = form_with model: nil, url: admin_visit_rejection_path(visit) do |f|
-                    = f.submit 'Remove', class: 'cursor-pointer w-full rounded bg-gray-200 transition duration-200 ease-in-out hover:bg-gray-300 text-sm text-gray-700 tracking-wider'
+      = render "status_#{visit.status}", visit: visit
 
 - else
   - if params.dig('filter', 'status') == 'confirmed'

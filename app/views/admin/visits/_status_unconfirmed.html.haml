@@ -1,0 +1,31 @@
+.my-4.rounded.admin-visit-status-unconfirmed{ data: { action: 'click->admin-visits#toggleActionMenu', visit: { token: visit.token } } }
+  = form_with model: Admin::VisitForm.new(visit) do |f|
+    .flex.flex-wrap.px-5.pt-3
+      .w-full
+        .flex.flex-wrap.sm:flex-no-wrap.text-xs
+          .w-full
+            .text-gray-500= visit.decorate.display_visited_at_in_hosts_time_zone
+          .w-full.sm:text-right
+            .text-status-unconfirmed= visit.decorate.display_status
+      .w-full.mt-1
+        .text-2xl= visit.token
+      .w-full.mt-1.mb-3
+        .flex
+          .flex-auto
+            .text-pink-600.text-xs.tracking-wider
+              - if visit.name.present?
+                = "#{visit.name} | "
+              = visit.decorate.display_contact_scrambled_full
+      .w-full
+        .text-sm= visit.notes
+
+      .w-full{ data: { target: 'admin-visits.actionMenu'} }
+        .flex
+          .w-full
+            = f.text_field :notes
+
+        .flex.flex-wrap.text-center.sm:flex-no-wrap
+          .w-full.p-3.pl-0
+            = f.submit 'Confirm', class: 'cursor-pointer w-full rounded bg-green-500 hover:bg-green-600 transition duration-200 ease-in-out text-sm text-white tracking-wider'
+          .w-full.p-3.pr-0
+            = link_to 'Remove', admin_visit_path(visit), method: :delete, class: 'cursor-pointer w-full block p-3 rounded bg-gray-200 transition duration-200 ease-in-out hover:bg-gray-300 text-sm text-gray-700 tracking-wider'
