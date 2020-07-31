@@ -70,5 +70,5 @@ jobs:
           bin/rails db:test:prepare
 
       - name: bin/test
-      - run: bin/test
+        run: bin/test
 
