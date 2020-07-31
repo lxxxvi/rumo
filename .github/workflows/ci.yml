@@ -38,11 +38,11 @@ jobs:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 
+      - name: Configure bundle to use vendor/path
+        run: bundle config path vendor/bundle --local
+
       - name: Bundle install
-        if: steps.bundler-cache.outputs.cache-hit != 'true'
-        run: |
-          bundle config path vendor/bundle
-          bundle install --jobs 4 --retry 3
+        run: bundle install --jobs 4 --retry 3
 
       # NODE SETUP
       - uses: actions/setup-node@v1
