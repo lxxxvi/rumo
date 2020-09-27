@@ -30,7 +30,7 @@ class VisitsStatisticsService
   end
 
   def statistics_sql
-    <<~SQL
+    <<~SQL.squish
       WITH visits_status AS (
         SELECT CASE
                  WHEN confirmed_at IS NULL THEN 'unconfirmed' ELSE 'confirmed'
