@@ -88,6 +88,7 @@ class VisitsTest < ApplicationSystemTestCase
 
     visit visit_path(host_url_identifier: 'cafe')
     assert has_field?('Notes'), 'Notes should be displayed'
+    assert_selector '.notes-text', text: 'Please provide table number'
 
     host.update(notes_enabled: false)
 

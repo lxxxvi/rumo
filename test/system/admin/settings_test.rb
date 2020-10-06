@@ -84,6 +84,10 @@ class Admin::SettingsTest < ApplicationSystemTestCase
   test 'admin writes custom notes text' do
     sign_in hosts(:cafe)
 
+    host = hosts(:cafe)
+
+    host.update(notes_text: '')
+
     click_on 'Account settings'
 
     assert_changes -> { find_field('Notes text').value }, from: '', to: 'Provide the table number' do
