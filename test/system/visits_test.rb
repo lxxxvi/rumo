@@ -83,6 +83,18 @@ class VisitsTest < ApplicationSystemTestCase
     end
   end
 
+  test 'notes field is not displayed when not enabled' do
+    host = hosts(:cafe)
+
+    visit visit_path(host_url_identifier: 'cafe')
+    assert has_field?('Notes'), 'Notes should be displayed'
+
+    host.update(notes_enabled: false)
+
+    visit visit_path(host_url_identifier: 'cafe')
+    assert_not has_field?('Notes'), 'Notes should NOT be displayed'
+  end
+
   private
 
   def visit_cafe_with(name:, contact:, notes: nil)
