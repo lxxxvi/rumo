@@ -16,11 +16,11 @@
         = render 'shared/forms/field_error_messages', form: visit_form, column: :name
         .mt-1.text-gray-500.text-xs This is shown to the host, it's optional.
 
-
-      .mb-8
-        = f.label :notes, class: 'label'
-        = f.text_field :notes, placeholder: 'optional', class: 'input-text w-full'
-        .mt-1.text-gray-500.text-xs Use this field as indicated by the host.
+      - if visit_form.object.host.notes_enabled?
+        .mb-8
+          = f.label :notes, class: 'label'
+          = f.text_field :notes, placeholder: 'optional', class: 'input-text w-full'
+          .mt-1.text-gray-500.text-xs Use this field as indicated by the host.
 
 
       .actions.mt-10

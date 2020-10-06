@@ -17,6 +17,6 @@ class Admin::SettingsController < Admin::BaseController
   private
 
   def admin_settings_params
-    params.require(:admin_settings).permit(:name, :url_identifier, :auto_confirm_visits)
+    params.require(:admin_settings).permit(:name, :url_identifier, :auto_confirm_visits, :notes_enabled)
   end
 end

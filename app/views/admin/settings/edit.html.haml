@@ -40,6 +40,11 @@
       .text-gray-500.text-xs.mt-1
         When enabled, visits are automatically confirmed.
 
+    .my-8
+      = f.label :notes_enabled, "Show 'Notes' field", class: 'label'
+      = f.check_box :notes_enabled, class: 'input-text'
+      .text-gray-500.text-xs.mt-1
+
     .actions.my-10
       = f.submit 'Edit settings', class: 'input-submit'
 

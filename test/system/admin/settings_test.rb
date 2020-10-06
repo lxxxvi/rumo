@@ -69,4 +69,15 @@ class Admin::SettingsTest < ApplicationSystemTestCase
       end
     end
   end
+
+  test 'admin disables notes field' do
+    sign_in hosts(:cafe)
+
+    click_on 'Account settings'
+
+    assert_changes -> { find_field("Show 'Notes' field").checked? }, to: false do
+      uncheck "Show 'Notes' field"
+      click_on 'Edit settings'
+    end
+  end
 end
