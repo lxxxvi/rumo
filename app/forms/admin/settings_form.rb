@@ -1,6 +1,6 @@
 class Admin::SettingsForm
   include ActiveModel::Model
-  attr_reader :object, :params, :name, :url_identifier, :auto_confirm_visits
+  attr_reader :object, :params, :name, :url_identifier, :auto_confirm_visits, :notes_enabled
 
   delegate :new_record?, :persisted?, to: :object
 
@@ -13,6 +13,7 @@ class Admin::SettingsForm
     @name = params[:name] || object.name
     @url_identifier = params[:url_identifier] || object.url_identifier
     @auto_confirm_visits = params[:auto_confirm_visits] || object.auto_confirm_visits
+    @notes_enabled = params[:notes_enabled] || object.notes_enabled
   end
 
   def save
@@ -21,6 +22,7 @@ class Admin::SettingsForm
     object.name = name
     object.url_identifier = url_identifier
     object.auto_confirm_visits = auto_confirm_visits
+    object.notes_enabled = notes_enabled
 
     object.save || copy_error_messages
   end
