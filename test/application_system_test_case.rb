@@ -1,6 +1,8 @@
 require 'test_helper'
 require 'capybara/rails'
 
+Webdrivers::Chromedriver.update
+
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   driven_by :rack_test
 
