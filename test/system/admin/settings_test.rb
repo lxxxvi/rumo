@@ -11,7 +11,7 @@ class Admin::SettingsTest < ApplicationSystemTestCase
 
     assert_changes -> { find_field('Name').value }, to: 'Cafe Perfettissimo' do
       fill_in 'Name', with: 'Cafe Perfettissimo'
-      click_on 'Edit settings'
+      click_on 'Save settings'
     end
   end
 
@@ -22,7 +22,7 @@ class Admin::SettingsTest < ApplicationSystemTestCase
 
     assert_changes -> { find_field('URL identifier').value }, to: 'cafe-cool' do
       fill_in 'URL identifier', with: 'cafe-cool'
-      click_on 'Edit settings'
+      click_on 'Save settings'
     end
   end
 
@@ -33,12 +33,12 @@ class Admin::SettingsTest < ApplicationSystemTestCase
 
     assert_changes -> { find_field('Auto-confirm visits').checked? }, to: true do
       check 'Auto-confirm visits'
-      click_on 'Edit settings'
+      click_on 'Save settings'
     end
 
     assert_changes -> { find_field('Auto-confirm visits').checked? }, to: false do
       uncheck 'Auto-confirm visits'
-      click_on 'Edit settings'
+      click_on 'Save settings'
     end
   end
 
@@ -49,7 +49,7 @@ class Admin::SettingsTest < ApplicationSystemTestCase
     fill_in 'Name', with: ''
     fill_in 'URL identifier', with: ''
 
-    click_on 'Edit settings'
+    click_on 'Save settings'
 
     assert_selector '.field_with_errors', minimum: 1
 
@@ -77,7 +77,7 @@ class Admin::SettingsTest < ApplicationSystemTestCase
 
     assert_changes -> { find_field("Show 'Notes' field").checked? }, to: false do
       uncheck "Show 'Notes' field"
-      click_on 'Edit settings'
+      click_on 'Save settings'
     end
   end
 
@@ -92,7 +92,7 @@ class Admin::SettingsTest < ApplicationSystemTestCase
 
     assert_changes -> { find_field('Notes text').value }, from: '', to: 'Provide the table number' do
       fill_in 'Notes text', with: 'Provide the table number'
-      click_on 'Edit settings'
+      click_on 'Save settings'
       refresh
     end
   end
