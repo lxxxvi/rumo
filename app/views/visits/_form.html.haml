@@ -20,8 +20,8 @@
         .mb-8
           = f.label :notes, class: 'label'
           = f.text_field :notes, placeholder: 'optional', class: 'input-text w-full'
-          .mt-1.text-gray-500.text-xs Use this field as indicated by the host.
-
+          .mt-1.text-gray-500.text-xs.notes-text
+            = visit_form.object.host.notes_text.presence || 'Use this field as indicated by the host.'
 
       .actions.mt-10
-        = f.submit 'Submit my contact data', class: "input-submit"
+        = f.submit 'Submit my contact data', class: "input-submit w-full"

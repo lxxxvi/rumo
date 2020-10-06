@@ -34,16 +34,25 @@
           %b QR code changes
           if you change the URL identifier.
 
-    .my-8
+    .my-16
       = f.label :auto_confirm_visits, 'Auto-confirm visits', class: 'label'
       = f.check_box :auto_confirm_visits, class: 'input-text'
       .text-gray-500.text-xs.mt-1
         When enabled, visits are automatically confirmed.
 
-    .my-8
+    .mt-8.mb-4
       = f.label :notes_enabled, "Show 'Notes' field", class: 'label'
       = f.check_box :notes_enabled, class: 'input-text'
       .text-gray-500.text-xs.mt-1
+        Use this field if you need additional information from your visitors.
+
+    .mt-4.mb-8
+      = f.label :notes_text, 'Notes text', class: 'label'
+      = f.text_area :notes_text, class: 'input-text'
+      .text-gray-500.text-xs.mt-1
+        This text will be shown below the "Notes" field.
+        %br
+        Describe what kind of information you are asking for.
 
     .actions.my-10
       = f.submit 'Edit settings', class: 'input-submit'

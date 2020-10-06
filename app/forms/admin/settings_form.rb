@@ -1,6 +1,6 @@
 class Admin::SettingsForm
   include ActiveModel::Model
-  attr_reader :object, :params, :name, :url_identifier, :auto_confirm_visits, :notes_enabled
+  attr_reader :object, :params, :name, :url_identifier, :auto_confirm_visits, :notes_enabled, :notes_text
 
   delegate :new_record?, :persisted?, to: :object
 
@@ -14,16 +14,13 @@ class Admin::SettingsForm
     @url_identifier = params[:url_identifier] || object.url_identifier
     @auto_confirm_visits = params[:auto_confirm_visits] || object.auto_confirm_visits
     @notes_enabled = params[:notes_enabled] || object.notes_enabled
+    @notes_text = params[:notes_text] || object.notes_text
   end
 
   def save
     return unless valid?
 
-    object.name = name
-    object.url_identifier = url_identifier
-    object.auto_confirm_visits = auto_confirm_visits
-    object.notes_enabled = notes_enabled
-
+    copy_attribute_values
     object.save || copy_error_messages
   end
 
@@ -40,5 +37,13 @@ class Admin::SettingsForm
   def copy_error_messages
     errors.copy!(object.errors)
     false
+  end
+
+  def copy_attribute_values
+    object.name = name
+    object.url_identifier = url_identifier
+    object.auto_confirm_visits = auto_confirm_visits
+    object.notes_enabled = notes_enabled
+    object.notes_text = notes_text
   end
 end
