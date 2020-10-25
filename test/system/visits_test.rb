@@ -96,6 +96,17 @@ class VisitsTest < ApplicationSystemTestCase
     assert_not has_field?('Notes'), 'Notes should NOT be displayed'
   end
 
+  test 'autofill form after first visit' do
+    Capybara.using_driver(:selenium_chrome_headless) do
+      visit_cafe_with(name: 'Andy Bernard', contact: '+1234-9999')
+
+      visit visit_path(host_url_identifier: 'cinema-hollywood')
+
+      assert_equal 'Andy Bernard', find_field('Name').value
+      assert_equal '+1234-9999', find_field('Contact').value
+    end
+  end
+
   private
 
   def visit_cafe_with(name:, contact:, notes: nil)
