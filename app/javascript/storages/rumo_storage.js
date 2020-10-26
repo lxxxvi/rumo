@@ -13,6 +13,22 @@ export default class RumoStorage {
     return tokens.split(",");
   }
 
+  get contact() {
+    return this.storage.getItem("contact")
+  }
+
+  get name() {
+    return this.storage.getItem("name")
+  }
+
+  set contact(value) {
+    this.storage.setItem("contact", value);
+  }
+
+  set name(value) {
+    this.storage.setItem("name", value);
+  }
+
   writeTokens(values) {
     this.storage.setItem("tokens", values.join(","));
   }
