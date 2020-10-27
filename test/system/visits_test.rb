@@ -5,7 +5,7 @@ class VisitsTest < ApplicationSystemTestCase
     visit '/'
 
     within('section#guest form') do
-      fill_in "Enter your host's token manually", with: 'cafe'
+      fill_in "Enter your host's token", with: 'cafe'
       click_on 'Go'
     end
 
@@ -26,7 +26,7 @@ class VisitsTest < ApplicationSystemTestCase
   test 'visitor submits form, valid params' do
     visit_cafe_with(name: 'Dwight Schrute', contact: '+1234-0000', notes: 'Table 34')
     assert_selector 'h1', text: 'My visits'
-    assert_selector 'ul#visits li', count: 1 do |element|
+    assert_selector '.visits .visit', count: 1 do |element|
       element.assert_text('Dwight Schrute')
       element.assert_text('*****-0000')
       element.assert_text('Table 34')
@@ -46,10 +46,10 @@ class VisitsTest < ApplicationSystemTestCase
 
       within_window guest_window do
         visit_cafe_with(name: 'Dwight Schrute', contact: '+1234-0000')
-        within 'ul#visits' do
-          assert_selector '.text-status-unconfirmed', count: 1
-          assert_selector '.text-status-confirmed', count: 0
-          @visit_token = find('li:first-child')['data-synchronize-visit-token']
+        within '.visits' do
+          assert_selector '.text-status--unconfirmed', count: 1
+          assert_selector '.text-status--confirmed', count: 0
+          @visit_token = find('.visit:first-child')['data-synchronize-visit-token']
 
           assert_match(/[[:alnum:]]{5}/, @visit_token, 'Visit token could not be found on guest visits page')
         end
@@ -66,9 +66,9 @@ class VisitsTest < ApplicationSystemTestCase
       end
 
       within_window guest_window do
-        within 'ul#visits' do
-          assert_selector '.text-status-confirmed', count: 1
-          assert_selector '.text-status-unconfirmed', count: 0
+        within '.visits' do
+          assert_selector '.text-status--confirmed', count: 1
+          assert_selector '.text-status--unconfirmed', count: 0
         end
       end
     end
@@ -78,8 +78,8 @@ class VisitsTest < ApplicationSystemTestCase
     visit_cafe_with(name: 'Michael', contact: '+00-00')
     visit root_path
 
-    within('section#guest') do
-      assert_link 'My visits', href: '/visits'
+    within('section#my-visits') do
+      assert_link 'Show my visits', href: '/visits'
     end
   end
 
@@ -116,6 +116,6 @@ class VisitsTest < ApplicationSystemTestCase
     fill_in 'Contact', with: contact
     fill_in 'Notes', with: notes
 
-    click_on 'Submit my contact data'
+    click_on 'Share contact data'
   end
 end

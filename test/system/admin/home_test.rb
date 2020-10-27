@@ -19,6 +19,6 @@ class Admin::HomeTest < ApplicationSystemTestCase
     click_on 'Sign out'
     assert_selector 'h1', text: 'Rumo is a digital guestlist'
     visit admin_root_path
-    assert_selector 'h1', text: 'Host sign in'
+    assert_selector 'h1', text: 'Sign in'
   end
 end

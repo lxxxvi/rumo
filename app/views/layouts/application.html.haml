@@ -10,15 +10,15 @@
     = javascript_pack_tag 'application'
   %body
     .flex.flex-wrap
-      .w-full.p-4.bg-purple-100
+      .w-full.p-4.bg-gradient-to-r.from-blue-300.to-blue-300.via-blue-200
         .max-w-screen-sm.sm:mx-auto
           = link_to '/', class: 'hover:font-bold' do
             .svg-center= raw render_svg 'umbrella.svg'
             .block.text-xs.tracking-widest.-mt-1.uppercase.text-center Rumo
 
-      .w-full.content
-        .max-w-screen-sm.sm:mx-auto.mx-4.my-8
-          = yield
+      .w-full
+        = yield
 
+    %footer.my-20
 
 

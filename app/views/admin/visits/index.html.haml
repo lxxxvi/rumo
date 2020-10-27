@@ -1,33 +1,36 @@
+.text-center.mt-6.mb-10
+  = link_to 'Back', admin_root_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'
 
 .text-center
-  .text-gray-700.text-sm= "#{current_host.name}"
-  %h1.text-2xl.tracking-wider Manage visits
+  %h1.text-4xl.text-indigo-600 Manage visits
 
-.text-center.my-10
-  = raw render 'shared/buttons/back', url: admin_root_path
+%section.bg-gradient-to-r.from-indigo-500.to-indigo-500.via-indigo-600.pt-10.pb-16
+  .container.mx-auto.text-left
+    .mx-auto{ class: 'md:w-1/2' }
+      .w-full.mb-2.text-center.text-white
+        - unconfirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'text-indigo-200' : 'font-bold'
+        .inline.mr-1{ class: unconfirmed_active_class }
+          \-
+          = link_to "#{@visit_statistics.unconfirmed || 0} unconfirmed", admin_visits_path, class: 'hover:text-indigo-300'
+        - confirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'font-bold' : 'text-indigo-300'
+        .inline.ml-1{ class: confirmed_active_class }
+          ✓
+          = link_to "#{@visit_statistics.confirmed || 0} confirmed", admin_visits_path(filter: { status: 'confirmed'}), class: 'hover:text-white'
+      .w-full.my-10
+        - if @visits.any?
+          %div{ data: { controller: 'admin-visits' } }
+            - @visits.each do |visit|
+              = render "status_#{visit.status}", visit: visit
 
-.flex.flex-wrap.sm:flex-no-wrap.text-sm
-  .w-full.mb-2.text-center
-    - unconfirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'text-gray-500' : 'font-bold'
-    %div{ class: "inline #{unconfirmed_active_class}"}
-      \-
-      = link_to "#{@visit_statistics.unconfirmed || 0} unconfirmed", admin_visits_path, class: 'hover:text-black'
-    - confirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'font-bold' : 'text-gray-500'
-    %div{ class: "inline #{confirmed_active_class} ml-2" }
-      ✓
-      = link_to "#{@visit_statistics.confirmed || 0} confirmed", admin_visits_path(filter: { status: 'confirmed'}), class: 'hover:text-black'
-
-- if @visits.any?
-  %div{ data: { controller: 'admin-visits' } }
-    - @visits.each do |visit|
-      = render "status_#{visit.status}", visit: visit
-
-- else
-  - if params.dig('filter', 'status') == 'confirmed'
-    .text-gray-500.text-center.text-sm.mt-2 Nothing here yet.
-  - else
-    .mt-10
-      .svg-center= raw render_svg 'circle_check_large_green.svg'
-      .text-gray-700.text-center.tracking-wide.mt-2
-        All caught up!
+        - else
+          - if params.dig('filter', 'status') == 'confirmed'
+            .text-indigo-100.text-center.text-sm.mt-2 Nothing here yet.
+          - else
+            .mt-20.text-green-400
+              %svg.mx-auto.w-24.h-24{:fill => "none", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "1.2", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
+                %path{:d => "M0 0h24v24H0z", :stroke => "none"}
+                %circle{:cx => "12", :cy => "12", :r => "9"}
+                %path{:d => "M9 12l2 2l4 -4"}
+            .text-white.text-center.tracking-wide.mt-2
+              All caught up!
 

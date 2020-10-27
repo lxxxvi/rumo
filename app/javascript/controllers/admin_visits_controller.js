@@ -20,17 +20,16 @@ export default class extends Controller {
     let openMenuTokens = this.openMenuTokens;
 
     this.actionMenuTargets.forEach((element) => {
-      let visitToken = element.closest("[data-visit-token]").dataset.visitToken;
+      const visitToken = this.visitTokenFromParent(element);
       element.classList.toggle('hidden', !openMenuTokens.includes(visitToken));
     });
   }
 
   toggleActionMenu(event) {
-    let visitToken = event.currentTarget.dataset.visitToken;
+    let visitToken = this.visitTokenFromParent(event.target);
 
     this.toggleOpenMenuToken(visitToken);
   }
-
 
   toggleOpenMenuToken(token) {
     let openMenuTokens = this.openMenuTokens;
@@ -43,5 +42,9 @@ export default class extends Controller {
     }
 
     this.openMenuTokens = openMenuTokens;
+  }
+
+  visitTokenFromParent(element) {
+    return element.closest("[data-visit-token]").dataset.visitToken;
   }
 }

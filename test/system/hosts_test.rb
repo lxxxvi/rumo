@@ -11,7 +11,7 @@ class HostsTest < ApplicationSystemTestCase
       click_on 'Sign up'
     end
 
-    assert_selector 'h1', text: 'Sign up as host'
+    assert_selector 'h1', text: 'Sign up as a host'
 
     fill_in 'Name', with: "Moe's Tavern"
     fill_in 'Email', with: 'moe@simp.son'
@@ -27,7 +27,7 @@ class HostsTest < ApplicationSystemTestCase
 
     click_on 'Sign up'
 
-    assert_selector 'h1', text: 'Sign up as host'
+    assert_selector 'h1', text: 'Sign up as a host'
 
     assert_selector '.field_with_errors input', count: 3
     error_messages = find_all('.error-message').map(&:text)
@@ -46,7 +46,7 @@ class HostsTest < ApplicationSystemTestCase
       click_on 'Reset password'
     end
 
-    assert_selector 'h1', text: 'Host sign in'
+    assert_selector 'h1', text: 'Sign in'
     assert_selector '.flash.flash-notice',
                     text: 'You will receive an email with instructions on how to reset your password'
 
@@ -138,7 +138,7 @@ class HostsTest < ApplicationSystemTestCase
 
     sign_in invalid_host, password
 
-    assert_selector 'h1', text: 'Host sign in'
+    assert_selector 'h1', text: 'Sign in'
     assert_selector '.flash.flash-alert', text: 'Invalid Email or password.'
   end
 

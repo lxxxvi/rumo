@@ -1,36 +1,39 @@
-.text-center{ data: { controller: 'visit' } }
-  = form_with model: visit_form,
-              url: visit_path(visit_form.object.host),
-              data: { action: 'visit#updateStorage' } do |f|
-    .mx-auto{ class: 'w-full sm:w-1/2' }
-      .mb-8
-        = f.label :contact, class: 'label'
-        = f.text_field :contact,
-                       placeholder: "Phone number / home address",
-                       class: 'input-text w-full',
-                       data: { target: 'visit.contactField' }
-        = render 'shared/forms/field_error_messages', form: visit_form, column: :contact
-        .mt-1.text-gray-500.text-xs
-          This will
-          %em not
-          be shown entirely to the host in the first place.
+%section.bg-gradient-to-r.from-blue-600.to-blue-600.via-blue-700.pt-12.pb-24{ data: { controller: 'visit' } }
+  .container.mx-auto
+    .w-full.mx-auto{ class: 'md:w-1/2' }
+      = form_with model: visit_form,
+                  url: visit_path(visit_form.object.host),
+                  data: { action: 'visit#updateStorage' } do |f|
+        .my-8
+          = f.label :contact, class: 'text-white text-xs tracking-wide'
+          = f.text_field :contact,
+                         placeholder: "+41 79 000 00 00",
+                         class: 'input-text w-full',
+                         data: { target: 'visit.contactField' }
+          = render 'shared/forms/field_error_messages', form: visit_form, column: :contact
+          .mt-1.text-blue-100.text-xs
+            This will
+            %em not
+            be shown entirely to the host in the first place.
 
-      .mb-8
-        = f.label :name, class: 'label'
-        = f.text_field :name,
-                       placeholder: "optional",
-                       class: 'input-text w-full',
-                       data: { target: 'visit.nameField' }
+        .my-8
+          = f.label :name, class: 'text-white text-xs tracking-wide'
+          = f.text_field :name,
+                         placeholder: "optional",
+                         class: 'w-full',
+                         data: { target: 'visit.nameField' }
 
-        = render 'shared/forms/field_error_messages', form: visit_form, column: :name
-        .mt-1.text-gray-500.text-xs This is shown to the host, it's optional.
+          = render 'shared/forms/field_error_messages', form: visit_form, column: :name
+          .mt-1.text-blue-100.text-xs This is shown to the host, it's optional.
 
-      - if visit_form.object.host.notes_enabled?
-        .mb-8
-          = f.label :notes, class: 'label'
-          = f.text_field :notes, placeholder: 'optional', class: 'input-text w-full'
-          .mt-1.text-gray-500.text-xs.notes-text
-            = visit_form.object.host.notes_text.presence || 'Use this field as indicated by the host.'
+        - if visit_form.object.host.notes_enabled?
+          .mb-8
+            = f.label :notes, class: 'text-white text-xs tracking-wide'
+            = f.text_field :notes, placeholder: 'optional', class: 'w-full'
+            .notes-text.mt-1.text-blue-100.text-xs
+              = visit_form.object.host.notes_text.presence || 'Use this field as indicated by the host.'
 
-      .actions.mt-10
-        = f.submit 'Submit my contact data', class: "input-submit w-full"
+        .actions.mt-10.text-right
+          = link_to 'Cancel', root_path, class: 'mr-6 text-gray-400  hover:text-white'
+          = f.button nil, type: :submit, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-blue-800 bg-white hover:bg-blue-400 hover:text-white focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-200' do
+            Share contact data
