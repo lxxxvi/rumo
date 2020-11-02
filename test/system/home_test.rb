@@ -26,7 +26,7 @@ class HomeTest < ApplicationSystemTestCase
     click_on 'Read more'
 
     assert_selector 'h1', text: 'About'
-    assert_selector 'h2', text: 'Privacy and transparency'
+    assert_selector 'h2', text: "Privacy\nand\nTransparency"
     assert_selector 'h2', text: 'Contact'
 
     assert_link 'Back', href: '/'

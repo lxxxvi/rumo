@@ -1,10 +1,10 @@
-.text-center.mt-6.mb-10
+.text-center.mt-6.mb-10.px-4
   = link_to 'Back', admin_root_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'
 
-.text-center.mt-10
+.text-center.mt-10.px-4
   %h1.text-4xl.text-indigo-600 Account settings
 
-%section.bg-gradient-to-r.from-indigo-500.to-indigo-500.via-indigo-600.pt-10.pb-16
+%section.bg-gradient-to-r.from-indigo-500.to-indigo-500.via-indigo-600.pt-10.pb-16.px-4
   .container.mx-auto.text-left
     .mx-auto{ class: 'md:w-1/2' }
       = form_with model: @settings_form, url: admin_settings_path do |f|
@@ -49,7 +49,7 @@
 
             = f.check_box :notes_enabled, data: { action: 'admin-notes-settings#toggleNotesText', target: 'admin-notes-settings.checkbox' }
 
-          .mt-4{ data: { target: 'admin-notes-settings.textarea' } }
+          .mt-6{ data: { target: 'admin-notes-settings.textarea' } }
             = f.label :notes_text, 'Notes text', class: 'text-white text-xs'
             = f.text_area :notes_text, class: 'w-full'
             .text-indigo-100.text-xs.mt-1
