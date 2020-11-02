@@ -5,32 +5,12 @@ body {
   @apply bg-transparent;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  @apply text-purple-600 tracking-wider mb-6;
-}
-
-h1 {
-  @apply mb-6;
-}
-
 label {
   @apply block;
 }
 
 input, select, textarea {
-  @apply py-3 px-2;
-}
-
-.input-text {
-  @apply bg-purple-100 border border-purple-400 rounded-lg shadow-inner;
-}
-
-.input-submit {
-  @apply bg-purple-400 rounded-lg py-2 px-10 cursor-pointer transition duration-200 ease-in-out;
-}
-
-.input-submit:hover {
-  @apply bg-purple-500;
+  @apply py-3 px-2 outline-none;
 }
 
 .label {
@@ -38,7 +18,7 @@ input, select, textarea {
 }
 
 .button {
-  @apply rounded py-2 px-10 border-2 cursor-pointer;
+  @apply py-2 px-10 border-2 cursor-pointer;
 }
 
 a.shy-link {
@@ -46,7 +26,7 @@ a.shy-link {
 }
 
 a.shy-link:hover {
-  @apply text-purple-500;
+  @apply text-blue-500;
 }
 
 ol {
@@ -57,22 +37,34 @@ ol {
   @apply border-pink-500;
 }
 
-.text-status-confirmed { @apply text-green-400; }
-.text-status-unconfirmed { @apply text-purple-400; }
+.text-status {
+  @apply inline-flex items-center px-5 py-1 text-xs font-medium leading-4;
+}
 
-.border-status-confirmed { @apply border-green-400 border-2; }
-.border-status-unconfirmed { @apply border-gray-200 border; }
+.text-status--confirmed {
+  @apply bg-green-200 text-green-900;
+}
+.text-status--unconfirmed {
+  @apply bg-blue-200 text-blue-900;
+}
+
+.text-status--hint {
+  @apply bg-yellow-300 text-yellow-900;
+}
+
+.border-status-confirmed { @apply border-green-300 border border-8; }
+.border-status-unconfirmed { @apply border-blue-200 border border-8 border-dashed; }
 
 .admin-visit-status-confirmed {
   @apply border-green-300 border border-l-8;
 }
 
 .admin-visit-status-unconfirmed {
-  @apply border-purple-500 border border-l-8 cursor-pointer;
+  @apply border-blue-500 border border-l-8 cursor-pointer;
 }
 
 .admin-visit-status-unconfirmed:hover {
-  @apply border-purple-600;
+  @apply border-blue-600;
 }
 
 @media print{
@@ -83,6 +75,10 @@ ol {
 
 .svg-center > svg {
   @apply mx-auto;
+}
+
+.field_with_errors {
+  @apply w-full;
 }
 
 @import "tailwindcss/utilities";

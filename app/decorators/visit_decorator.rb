@@ -12,7 +12,7 @@ class VisitDecorator < SimpleDelegator
   end
 
   def contact_scrambled_full
-    @contact_scrambled_full ||= [contact[..-6].gsub(/./, '*'), contact[-5..]]
+    @contact_scrambled_full ||= ['******', contact[-5..]]
   end
 
   def display_contact_scrambled_full

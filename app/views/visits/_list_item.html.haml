@@ -1,15 +1,15 @@
 - if visit&.persisted?
-  .shadow-lg.bg-white.rounded.mb-8{ class: "border-status-#{visit.status}" }
-    .flex.flex-wrap.px-5.py-3
+  .bg-white.mb-8{ class: "border-status-#{visit.status}" }
+    .flex.flex-wrap.px-5.py-5
       .w-full
         .text-xs.text-gray-500= visit.decorate.display_visited_at_in_hosts_time_zone
       .w-full.mt-2
-        .text-normal.uppercase.text-pink-400.tracking-wider= visit.host.name
-      .w-full.my-4
+        .text-normal.uppercase.text-blue-500.tracking-wide= visit.host.name
+      .w-full.my-3
         .text-xs.text-gray-400 Token
-        .text-3xl= visit.token
-      .w-full.my-4
-        .text-xs.text-pink-500.mt-1
+        .text-3xl.font-mono= visit.token
+      .w-full.my-3
+        .text-xs.text-blue-400
           - if visit.name.present?
             = "#{visit.name} | "
           = visit.decorate.display_contact_scrambled_full
@@ -22,5 +22,5 @@
       .w-full.my-3
         .text-xs.text-gray-400
           Status
-        .text-sm.mt-1{ class: "text-status-#{visit.status}" }
+        .text-sm.mt-1{ class: "text-status text-status--#{visit.status}" }
           = visit.decorate.display_status

@@ -1,30 +1,44 @@
-- if flash[:notice].present?
-  .mx-auto.text-center.bg-indigo-100.my-10.p-4.shadow-lg.text-xs.text-gray-800.tracking-wide{ class: 'w-full sm:w-1/2' }
-    .flash.flash-notice= flash[:notice]
+= render 'shared/general/guest_most_not_sign_in'
 
-.text-center
-  %h1 Host sign in
+.text-center.mt-10.mb-4
+  %h1.text-4xl.text-indigo-600.px-4 Sign in
 
-  - if flash[:alert].present?
-    .flash.flash-alert
-      .mx-auto.bg-pink-100.my-10.p-4.shadow-lg.text-sm.text-gray-800.tracking-wide{ class: 'w-full sm:w-1/2' }
-        = flash[:alert]
+%section.bg-gradient-to-r.from-indigo-600.to-indigo-500.via-indigo-700.pt-12.pb-6.px-4
+  .container.mx-auto
+    .w-full.mx-auto{ class: 'md:w-1/2' }
 
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .my-5
-      = f.label :email, class: 'text-gray-500 text-xs'
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input-text'
-      = render 'shared/forms/field_error_messages', form: resource, column: :email
-    .my-5
-      = f.label :password, class: 'text-gray-500 text-xs'
-      = f.password_field :password, autocomplete: "current-password", class: 'input-text'
-      = render 'shared/forms/field_error_messages', form: resource, column: :password
-    - if devise_mapping.rememberable?
-      .my-5
-        = f.check_box :remember_me
-        = f.label :remember_me, class: 'text-gray-500 text-xs'
+      - if flash[:alert].present?
+        .flash.flash-alert
+          .mx-auto.bg-yellow-200.my-10.p-4.text-sm.text-indigo-900
+            = flash[:alert]
 
-    .actions.my-5
-      = f.submit "Sign in", class: 'input-submit'
-  .mt-10
-    = render 'devise/shared/links'
+      - if flash[:notice].present?
+        .flash.flash-notice
+          .mx-auto.bg-indigo-200.my-10.px-4.py-6.text-sm.text-indigo-900
+            = flash[:notice]
+
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .my-8
+          = f.label :email, class: 'text-white text-xs tracking-wide'
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'w-full'
+          = render 'shared/forms/field_error_messages', form: resource, column: :email
+
+        .my-8
+          = f.label :password, class: 'text-white text-xs tracking-wide'
+          = f.password_field :password, autocomplete: "current-password", class: 'w-full'
+
+          = render 'shared/forms/field_error_messages', form: resource, column: :password
+        - if devise_mapping.rememberable?
+          .my-8
+            = f.label :remember_me, class: 'text-white text-xs tracking-wide'
+            = f.check_box :remember_me
+
+        .actions.my-8.text-right
+          = link_to 'Cancel', root_path, class: 'mr-6 text-gray-400  hover:text-white'
+          = f.button 'Sign in', type: :submit, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-indigo-900 bg-white hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
+
+      .my-8.text-right
+        .w-full
+          = link_to 'Sign up', new_registration_path(resource_name), class: 'text-white hover:text-indigo-300 transition duration-100 ease-in-out'
+        .w-full.mt-2
+          = link_to 'Forgot your password?', new_password_path(resource_name), class: 'text-white hover:text-indigo-300 transition duration-100 ease-in-out'
