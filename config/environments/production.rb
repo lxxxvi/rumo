@@ -1,6 +1,6 @@
 Rails.application.configure do
   routes.default_url_options = {
-    host: 'rumo-production.herokuapp.com',
+    host: 'rumo.host',
     protocol: 'https'
   }
   # Settings specified here will take precedence over those in config/application.rb.
