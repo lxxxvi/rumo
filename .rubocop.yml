@@ -37,13 +37,25 @@ Lint/ConstantDefinitionInBlock:
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
 
+Lint/DuplicateBranch:
+  Enabled: true
+
 Lint/DuplicateElsifCondition:
+  Enabled: true
+
+Lint/DuplicateRegexpCharacterClassElement:
   Enabled: true
 
 Lint/DuplicateRequire:
   Enabled: true
 
 Lint/DuplicateRescueException:
+  Enabled: true
+
+Lint/EmptyBlock:
+  Enabled: true
+
+Lint/EmptyClass:
   Enabled: true
 
 Lint/EmptyConditionalBody:
@@ -64,6 +76,9 @@ Lint/MissingSuper:
 Lint/MixedRegexpCaptureTypes:
   Enabled: true
 
+Lint/NoReturnInBeginEndBlocks:
+  Enabled: true
+
 Lint/OutOfRangeRegexpRef:
   Enabled: true
 
@@ -76,10 +91,16 @@ Lint/SelfAssignment:
 Lint/StructNewOverride:
   Enabled: true
 
+Lint/ToEnumArguments:
+  Enabled: true
+
 Lint/TopLevelReturnWithArgument:
   Enabled: true
 
 Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/UnmodifiedReduceAccumulator:
   Enabled: true
 
 Lint/UnreachableLoop:
@@ -105,6 +126,9 @@ Metrics/MethodLength:
   Exclude:
   - db/migrate/*
   - test/**/*
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
 
 Rails/ActiveRecordCallbacksOrder:
   Enabled: true
@@ -154,6 +178,9 @@ Rails/WhereNot:
 Style/AccessorGrouping:
   Enabled: true
 
+Style/ArgumentsForwarding:
+  Enabled: true
+
 Style/ArrayCoercion:
   Enabled: true
 
@@ -166,7 +193,13 @@ Style/CaseLikeIf:
 Style/ClassAndModuleChildren:
   Enabled: false
 
+Style/CollectionCompact:
+  Enabled: true
+
 Style/CombinableLoops:
+  Enabled: true
+
+Style/DocumentDynamicEvalDefinition:
   Enabled: true
 
 Style/Documentation:
@@ -206,10 +239,19 @@ Style/Lambda:
   Enabled: true
   EnforcedStyle: literal
 
+Style/NegatedIfElseCondition:
+  Enabled: true
+
+Style/NilLambda:
+  Enabled: true
+
 Style/NumericLiterals:
   Enabled: false
 
 Style/OptionalBooleanParameter:
+  Enabled: true
+
+Style/RedundantArgument:
   Enabled: true
 
 Style/RedundantAssignment:
@@ -240,4 +282,7 @@ Style/SoleNestedConditional:
   Enabled: true
 
 Style/StringConcatenation:
+  Enabled: true
+
+Style/SwapValues:
   Enabled: true
