@@ -1,6 +1,3 @@
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-
 body {
   @apply bg-transparent;
 }
@@ -80,5 +77,3 @@ ol {
 .field_with_errors {
   @apply w-full;
 }
-
-@import "tailwindcss/utilities";
