@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :visits, only: %i[index update destroy], param: :token
     resource :qr_code, only: :show
+    resources :downloads, only: %i[new create]
     resource :settings, only: %i[edit update]
     root to: 'home#index'
   end

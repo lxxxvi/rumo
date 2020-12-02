@@ -69,4 +69,13 @@ class VisitTest < ActiveSupport::TestCase
   test '#decorate' do
     assert_equal VisitDecorator, @visit.decorate.class
   end
+
+  test '.visited_at_on_date_in_time_zone' do
+    assert_includes Visit.visited_at_on_date_in_time_zone(Date.new(2020, 4, 5), 'Europe/Zurich').to_sql,
+                    visited_at_on_date_in_time_zone_where_clause_sql
+  end
+
+  def visited_at_on_date_in_time_zone_where_clause_sql
+    "(date(visited_at AT TIME ZONE 'UTC' AT TIME ZONE 'Europe/Zurich') = '2020-04-05')"
+  end
 end
