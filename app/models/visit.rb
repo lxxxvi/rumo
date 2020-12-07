@@ -14,6 +14,14 @@ class Visit < ApplicationRecord
     order(visited_at: :desc).order(confirmed_at: :desc).order(:token)
   }
 
+  scope :visited_at_on_date_in_time_zone, ->(date, time_zone) {
+    where(
+      "date(visited_at AT TIME ZONE 'UTC' AT TIME ZONE :time_zone) = :date",
+      date: date,
+      time_zone: time_zone
+    )
+  }
+
   def to_param
     token
   end

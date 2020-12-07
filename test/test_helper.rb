@@ -9,7 +9,13 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def copy_visit!(visit, target_visited_at)
+    visit.dup.tap do |new_visit|
+      new_visit.token = SecureRandom.alphanumeric
+      new_visit.visited_at = target_visited_at
+      new_visit.save!
+    end
+  end
 end
 
 class ActionDispatch::IntegrationTest
