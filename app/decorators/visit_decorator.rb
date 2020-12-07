@@ -18,4 +18,12 @@ class VisitDecorator < SimpleDelegator
   def display_contact_scrambled_full
     contact_scrambled_full.join
   end
+
+  def display_downloaded_at_date
+    downloaded_at.strftime('%Y-%m-%d')
+  end
+
+  def display_downloaded_at_time
+    downloaded_at.strftime('%H:%M')
+  end
 end

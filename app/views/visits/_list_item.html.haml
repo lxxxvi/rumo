@@ -24,3 +24,10 @@
           Status
         .text-sm.mt-1{ class: "text-status text-status--#{visit.status}" }
           = visit.decorate.display_status
+      .w-full.my-3.downloaded-at
+        - if visit.downloaded?
+          .text-xs.text-orange-500
+            = "This data has been disclosed on #{visit.decorate.display_downloaded_at_date} at #{visit.decorate.display_downloaded_at_time} UTC."
+        - else
+          .text-xs.text-green-400
+            This data has not been disclosed.

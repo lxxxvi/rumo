@@ -30,6 +30,10 @@ class Visit < ApplicationRecord
     confirmed_at.present?
   end
 
+  def downloaded?
+    downloaded_at.present?
+  end
+
   def set_confirmed_at
     self.confirmed_at ||= Time.zone.now
   end
