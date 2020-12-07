@@ -107,6 +107,22 @@ class VisitsTest < ApplicationSystemTestCase
     end
   end
 
+  test 'visitor sees if their data has been downloaded' do
+    visit_cafe_with(name: 'Michael', contact: '+00-00')
+    last_visit = Visit.last
+
+    reference_date = Time.new(2020, 6, 6, 7, 8, 9, 0)
+
+    visit visits_path
+
+    assert_selector '.visits .downloaded-at', text: 'This data has not been disclosed.'
+
+    last_visit.update(downloaded_at: reference_date)
+    refresh
+
+    assert_selector '.visits .downloaded-at', text: 'This data has been disclosed on 2020-06-06 at 07:08 UTC.'
+  end
+
   private
 
   def visit_cafe_with(name:, contact:, notes: nil)
