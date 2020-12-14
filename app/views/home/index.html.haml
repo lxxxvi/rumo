@@ -3,13 +3,13 @@
     Rumo is a
     %span.block
       digital
-      %b.bg-clip-text.text-transparent.bg-gradient-to-r.from-blue-400.to-blue-400.via-teal-500
+      %b.bg-clip-text.text-transparent.bg-gradient-to-r.from-blue-400.to-blue-400.via-green-500
         guestlist
   %p.text-xl.text-gray-800.mt-4
     which can be used for COVID-19 precautionary measures.
 
 - if @visits_count.positive?
-  %section#my-visits.bg-gradient-to-r.from-teal-300.via-teal-200.to-teal-300.pt-5.pb-8.text-center.text-sm.px-4
+  %section#my-visits.bg-gradient-to-r.from-green-300.via-green-100.to-green-300.pt-5.pb-8.text-center.text-sm.px-4
     .text-xl
       Welcome back!
 
@@ -19,7 +19,7 @@
       in the past 2 weeks.
 
     .w-full.mt-6
-      = link_to 'Show my visits', visits_path, class: 'tracking-wide inline-block text-teal-800 bg-white py-2 px-5 transition duration-200 ease-in-out hover:bg-teal-600 hover:text-white'
+      = link_to 'Show my visits', visits_path, class: 'tracking-wide inline-block text-white bg-green-600 py-2 px-5 transition duration-200 ease-in-out hover:bg-white hover:text-green-800'
 
 %section#guest.bg-gradient-to-r.from-blue-600.to-blue-600.via-blue-700.pt-10.pb-12.text-center.px-4
   %h2.text-4xl.text-white Guests
