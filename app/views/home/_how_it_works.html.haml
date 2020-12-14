@@ -1,0 +1,19 @@
+%section#how-it-works.text-center.my-20.px-4
+  %h2.inline-block.text-4xl.font-bold.text-blue-500.tracking-wider
+    = t('.how_it_works')
+
+  .text-center.tracking-wide.leading-relaxed.text-gray-800.mb-10.mt-6
+    %p.my-6
+      %b.block.tracking-wider.text-blue-500= t('.guests')
+      = t('.submit_their_contact_data_at_beginning')
+
+    %p.my-6
+      %b.block.tracking-wider.text-blue-500= t('.hosts')
+      = t('.validate_and_confirm_visits')
+
+    %p.my-6
+      %b.block.tracking-wider.text-blue-500= t('shared.rumo')
+      = t('.keeps_sensitive_data_private_until_they_are_needed_html')
+
+    %p.mt-6
+      = link_to t('.read_more'), about_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'

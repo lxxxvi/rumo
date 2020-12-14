@@ -1,8 +1,9 @@
 .text-center.mt-6.mb-10.px-4
-  = link_to 'Back', admin_root_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'
+  = link_to t('shared.back'), admin_root_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'
 
 .text-center
-  %h1.text-4xl.text-indigo-600.px-4 Manage visits
+  %h1.text-4xl.text-indigo-600.px-4
+    = t('.manage_visits')
 
 %section.bg-gradient-to-r.from-indigo-500.to-indigo-500.via-indigo-600.pt-10.pb-16.px-4
   .container.mx-auto.text-left
@@ -11,11 +12,11 @@
         - unconfirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'text-indigo-200' : 'font-bold'
         .inline.mr-1{ class: unconfirmed_active_class }
           \-
-          = link_to "#{@visit_statistics.unconfirmed || 0} unconfirmed", admin_visits_path, class: 'hover:text-indigo-300'
+          = link_to t('.unconfirmed_with_count', count: @visit_statistics.unconfirmed || 0), admin_visits_path, class: 'hover:text-indigo-300'
         - confirmed_active_class = params.dig('filter', 'status') == 'confirmed' ? 'font-bold' : 'text-indigo-300'
         .inline.ml-1{ class: confirmed_active_class }
           ✓
-          = link_to "#{@visit_statistics.confirmed || 0} confirmed", admin_visits_path(filter: { status: 'confirmed'}), class: 'hover:text-white'
+          = link_to t('.confirmed_with_count', count: @visit_statistics.confirmed || 0), admin_visits_path(filter: { status: 'confirmed'}), class: 'hover:text-white'
       .w-full.my-10
         - if @visits.any?
           %div{ data: { controller: 'admin-visits' } }
@@ -24,7 +25,8 @@
 
         - else
           - if params.dig('filter', 'status') == 'confirmed'
-            .text-indigo-100.text-center.text-sm.mt-2 Nothing here yet.
+            .text-indigo-100.text-center.text-sm.mt-2
+              = t('.nothing_here_yet')
           - else
             .mt-20.text-green-400
               %svg.mx-auto.w-24.h-24{:fill => "none", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "1.2", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
@@ -32,5 +34,5 @@
                 %circle{:cx => "12", :cy => "12", :r => "9"}
                 %path{:d => "M9 12l2 2l4 -4"}
             .text-white.text-center.tracking-wide.mt-2
-              All caught up!
+              = t('.all_caught_up_exclamation_mark')
 

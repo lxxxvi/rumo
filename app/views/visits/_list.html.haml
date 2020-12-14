@@ -1,10 +1,11 @@
 .flex.flex-wrap.bg-gradient-to-r.from-blue-500.to-blue-500.py-16.via-blue-600.px-4
-  - if visits.present? && visits.any?
-    .container.mx-auto
+  .container.mx-auto
+    - if visits.present? && visits.any?
       .mx-auto{ class: 'md:w-1/2' }
         .visits
           - visits.each do |visit|
             .visit{ data: { controller: 'synchronize-visit', 'synchronize-visit-token': visit.token } }
               = render 'list_item', visit: visit
-  - else
-    .text-center.text-sm.text-blue-500 No visits found
+    - else
+      .text-center.text-sm.text-white
+        = t('.no_visits_found')

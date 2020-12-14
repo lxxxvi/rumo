@@ -1,38 +1,173 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   time:
     formats:
-      default: '%Y-%m-%d %H:%M'
+      default: "%Y-%m-%d %H:%M"
+  activerecord:
+    attributes:
+      host:
+        name: "Name"
+        url_identifier: "URL identifier"
+        country_time_zone_identifier: "Country time zone identifier"
+        email: "Email"
+        password: "Password"
+        auto_confirm_visits: "Auto-confirm visits"
+        notes_enabled: "Notes enabled"
+        notes_text: "Notes text"
+        remember_me: "Remember me"
+  activemodel:
+    attributes:
+      visit_form:
+        contact: "Contact"
+        name: "Name"
+        notes: "Notes"
+      admin/download_form:
+        selected_date: 'Select date'
+      admin/settings_form:
+        auto_confirm_visits: "Auto-confirm visits"
+        notes_enabled: "Show 'Notes' field"
+        notes_text: "Notes text"
+      admin/visit_form:
+        notes: "Notes"
+  helpers:
+    submit:
+      admin_download:
+        create: "Download visits"
+      admin_settings:
+        update: "Save settings"
+      admin_visit:
+        update: "Confirm visit"
+      visit:
+        create: "Share contact data"
+      host:
+        create: "Sign up"
+  shared:
+    back: "Back"
+    cancel: "Cancel"
+    forgot_your_password_question: "Forgot your password?"
+    general:
+      guest_must_not_sign_in:
+        if_you_are_a_guest_you_dont_need_to_sign_up_or_in_html: "If you are a <b>guest</b> you do not need to sign up or sign in."
+        go_to_the: 'Go to the'
+        home_page: 'home page'
+        and_start_over_from_there: 'and start over from there.'
+    hosts:
+      one: "1 host"
+      other: "%{count} hosts"
+    optional: "optional"
+    rumo: "Rumo"
+    sign_up: "Sign up"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
+    visits:
+      one: "1 visit"
+      other: "%{count} visits"
+  admin:
+    downloads:
+      new:
+        download_visits: "Download visits"
+        there_are_no_visits_to_download: "There are no visits to download"
+    home:
+      index:
+        admin_area: "Admin area"
+        show_qr_code: "Show QR code"
+        let_customers_register_themselves: "Let your customers register themselves when they visit."
+        scanning_the_code_takes_customers_to_form: "Scanning the QR code takes your customers to the online registration form."
+        consider_printing_the_qr_code: "Consider printing the QR code and put it on display."
+        manage_visits: "Manage visits"
+        view_confirm_or_remove_visits: "View, confirm or remove visits."
+        you_currently_have: "You currently have"
+        unconfirmed_with_count: "%{count} unconfirmed"
+        visits_period:
+          one: "visit."
+          other: "visits."
+        download_visits: "Download visits"
+        download_visits_from_given_dates: "Download visits data from given dates."
+        account_settings: "Account settings"
+        change_your_settings: "Change your settings."
+    qr_codes:
+      show:
+        consider_printing: "(consider printing this page)"
+    settings:
+      edit:
+        account_settings: "Account settings"
+        this_is_the_last_part_of_your_public_url_colon: "This is the last part your public URL:"
+        it_may_only_contain_alphanumeric_and_dashes: "It may only contain alphanumeric characters and dashes."
+        note_that_your_qr_code_changes_if_you_change_url_identifier_html: "Note that your <b>QR code changes</b> if you change the URL identifier."
+        when_enabled_visits_are_confirmed_automatically: "When enabled, visits are automatically confirmed."
+        use_field_to_ask_guest_for_additional_information: "Use this field if you need additional information from your guests."
+        text_will_be_shown_below_notes_field: "This text will be shown below the 'Notes' field."
+        describe_what_information_you_are_asking_for: "Describe what kind of information you are asking for."
+    visits:
+      index:
+        manage_visits: "Manage visits"
+        unconfirmed_with_count: "%{count} unconfirmed"
+        confirmed_with_count: "%{count} confirmed"
+        nothing_here_yet: "Nothing here yet."
+        all_caught_up_exclamation_mark: "All caught up!"
+      status_unconfirmed:
+        remove: "Remove"
+        notes_placeholder: "Add your notes if required"
+  home:
+    about:
+      about: "About"
+      privacy: "Privacy"
+      and: "and"
+      transparency: "Transparency"
+      does_not_show_contact_data_unless_necessary: "does not show contact data unless necessary."
+      your_contact_data_is_not_shown_to_your_host_html: "Your contact data (phone number) is <b>not shown</b> to your host in the first place."
+      a_host_can_unlock_and_download: "A host can unlock and download this data."
+      this_is_required_when_they_provide_to_contact_tracing: "This is required when they need to provide their guestlists to the contact tracing authorities."
+      shows_if_data_has_been_unlocked: "shows if data has been unlocked."
+      rumo_wont_notify_when_data_has_been_unlocked_html: "However, Rumo <b>won't notify</b> you when your data has been unlocked."
+      if_your_data_is_unlocked_you_see_it_on_your: "If your data has been unlocked you can see it on your"
+      visits: "visits"
+      page_period: "page."
+      deletes_data_after_14_days: "deletes data after 14 days."
+      data_will_automatically_be_deleted_html: "14 days after your visit, the data will automatically be <b>deleted</b>."
+      forever_period: "Forever."
+      there_wont_be_any_backups: "There won't be any backups either, it will be gone."
+      contact: "Contact"
+    intro:
+      rumo_is_a: "Rumo is a"
+      digital_guestlist_html: "digital <b>guestlist</b>"
+      which_can_be_used_for_covid19: "which can be used for COVID-19 precautionary measures."
+    having_visits:
+      welcome_back: "Welcome back!"
+      you_have_visited_n_hosts_html: "You have visited <b>%{hosts}</b> in the past 2 weeks."
+      show_my_visits: "Show my visits"
+    guests_section:
+      guests: "Guests"
+      enter_your_hosts_token_html: "Enter your <b>host's token</b>"
+      go: "Go"
+      or: "or"
+      ask_your_host_for_the_qr_code_html: "Ask your host for the <b>QR code</b>"
+      that_automatically_takes_you_to_registration: "that automatically takes you to the registration form."
+    how_it_works:
+      how_it_works: "How it works"
+      guests: "Guests"
+      submit_their_contact_data_at_beginning: "submit their contact data at the beginning of their visit."
+      hosts: "Hosts"
+      validate_and_confirm_visits: "validate and confirm visits if required."
+      keeps_sensitive_data_private_until_they_are_needed_html: "keeps sensitive data <b>private</b> until they are needed for contact tracing."
+      read_more: "Read more"
+    hosts_section:
+      hosts: "Hosts"
+      register_for_free_html: "register for <u>free</u>"
+      already_have_an_account_question: "Already have an account?"
   visits:
-    one: '1 visit'
-    other: '%{count} visits'
+    index:
+      my_visits: "My visits"
+    list:
+      no_visits_found: "No visits found"
+    list_item:
+      token: "Token"
+      status: "Status"
+      this_data_has_been_disclosed_on_at_utc: "This data has been disclosed on %{date} at %{time} UTC."
+      this_data_has_not_been_disclosed: "This data has not been disclosed."
+    new:
+      welcome_to: "Welcome to"
+    form:
+      this_will_not_be_shown_entirely_to_the_host_html: "This will <b>not</b> be shown entirely to the host in the first place."
+      this_is_shown_to_the_host_its_optional: "This is shown to the host, it's optional."
+      use_this_field_as_indicated_by_the_host: "'Use this field as indicated by the host.'"
+

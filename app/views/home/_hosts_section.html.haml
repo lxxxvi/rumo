@@ -1,0 +1,19 @@
+%section#host.bg-gradient-to-r.from-indigo-600.to-indigo-500.via-indigo-700.pt-10.pb-10.text-center.px-4
+  %h2.text-4xl.bold.text-white= t('.hosts')
+
+  .text-center.text-white.tracking-wide
+    = t('.register_for_free_html')
+
+  .flex.flex-wrap.my-5
+    .w-full
+      = link_to new_host_registration_path, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-indigo-900 bg-white hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200' do
+        %svg.h-5.w-5.-ml-3.mr-3{:fill => "none", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "1.2", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
+          %path{:d => "M0 0h24v24H0z", :stroke => "none"}
+          %path{:d => "M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"}
+          %line{:x1 => "13.5", :x2 => "17.5", :y1 => "6.5", :y2 => "10.5"}
+        = t('shared.sign_up')
+
+  .flex.flex-wrap
+    .w-full.text-center.text-sm.my-3.text-indigo-300
+      = t('.already_have_an_account_question')
+      = link_to t('shared.sign_in'), new_host_session_path, class: 'ml-1 text-white hover:text-indigo-300 transition duration-100 ease-in-out'

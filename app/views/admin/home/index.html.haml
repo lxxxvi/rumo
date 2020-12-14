@@ -1,5 +1,5 @@
 .text-center.mt-20.mb-6.px-4
-  %h1.text-sm.mb-0.pb-0.leading-tight.text-indigo-400.tracking-wide Admin area
+  %h1.text-sm.mb-0.pb-0.leading-tight.text-indigo-400.tracking-wide= t('.admin_area')
   .text-indigo-600.text-4xl= "#{current_host.name}"
 
 %section.bg-gradient-to-r.from-indigo-500.to-indigo-500.via-indigo-600.pt-10.pb-16.text-indigo-100.px-4
@@ -21,15 +21,14 @@
           %line{:x1 => "17", :x2 => "20", :y1 => "17", :y2 => "17"}
           %line{:x1 => "20", :x2 => "20", :y1 => "17", :y2 => "20"}
       .w-full.mt-6
-        = link_to 'Show QR code',admin_qr_code_path, class: 'py-2 px-5 inline-block bg-white text-indigo-900 bg-white mx-auto hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
+        = link_to t('.show_qr_code'),admin_qr_code_path, class: 'py-2 px-5 inline-block bg-white text-indigo-900 bg-white mx-auto hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
       .text-sm.mt-8.tracking-wide.leading-5
         %p
-          Let your customers register themselves when they visit.
+          = t('.let_customers_register_themselves')
         %p.mt-2
-          Scanning the QR code takes your customers to the online registration form.
+          = t('.scanning_the_code_takes_customers_to_form')
         %p.mt-2
-          Consider printing the QR code and put it on display.
-
+          = t('.consider_printing_the_qr_code')
 
 %section.py-20.text-black.text-center.pt-16.pb-20.px-4
   .container.mx-auto
@@ -42,16 +41,17 @@
           %path{:d => "M16 3.13a4 4 0 0 1 0 7.75"}
           %path{:d => "M21 21v-2a4 4 0 0 0 -3 -3.85"}
       .w-full.mt-6
-        = link_to 'Manage visits', admin_visits_path, class: 'py-2 px-5 inline-block bg-indigo-400 text-black hover:bg-indigo-600 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
+        = link_to t('.manage_visits'), admin_visits_path, class: 'py-2 px-5 inline-block bg-indigo-400 text-black hover:bg-indigo-600 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
       .text-sm.mt-8
-        .tracking-wide View, confirm or remove visits.
+        .tracking-wide
+          = t('.view_confirm_or_remove_visits')
         - if @unconfirmed_host_visits_count.positive?
           %p.tracking-wide.mt-2
-            You currently have
-            = link_to "#{@unconfirmed_host_visits_count} unconfirmed",
+            = t('.you_currently_have')
+            = link_to t('.unconfirmed_with_count', count: @unconfirmed_host_visits_count),
                       admin_visits_path,
                       class: 'text-status text-status--hint transition duration-100 ease-in-out hover:bg-yellow-400'
-            = "#{ "visit".pluralize(@unconfirmed_host_visits_count) }."
+            = t('.visits_period', count:@unconfirmed_host_visits_count)
 
 %section.bg-gradient-to-r.from-indigo-500.to-indigo-500.via-indigo-600.pt-16.pb-20.text-indigo-100.px-4
   .container.mx-auto.text-center
@@ -63,9 +63,9 @@
           %line{:x1 => "12", :x2 => "12", :y1 => "13", :y2 => "22"}
           %polyline{:points => "9 19 12 22 15 19"}
       .w-full.mt-6
-        = link_to 'Download visits', new_admin_download_path, class: 'py-2 px-5 inline-block bg-white text-indigo-900 bg-white mx-auto hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
+        = link_to t('.download_visits'), new_admin_download_path, class: 'py-2 px-5 inline-block bg-white text-indigo-900 bg-white mx-auto hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
       .text-sm.mt-8
-        Download visits data from given dates.
+        = t('.download_visits_from_given_dates')
 
 %section.py-20.text-black.text-center.pt-16.pb-20.px-4
   .container.mx-auto.text-center
@@ -76,9 +76,9 @@
           %path{:d => "M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"}
           %circle{:cx => "12", :cy => "12", :r => "3"}
       .w-full.mt-6
-        = link_to 'Account settings', edit_admin_settings_path, class: 'py-2 px-5 inline-block bg-indigo-400 text-black hover:bg-indigo-600 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
+        = link_to t('.account_settings'), edit_admin_settings_path, class: 'py-2 px-5 inline-block bg-indigo-400 text-black hover:bg-indigo-600 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
       .text-sm.mt-8
-        Change your settings.
+        = t('.change_your_settings')
 
 .text-center.mt-10.px-4
-  = link_to 'Sign out', destroy_host_session_path, method: :delete, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'
+  = link_to t('shared.sign_out'), destroy_host_session_path, method: :delete, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'

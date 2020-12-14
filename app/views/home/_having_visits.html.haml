@@ -1,0 +1,10 @@
+- if visits_count.positive?
+  %section#my-visits.bg-gradient-to-r.from-green-300.via-green-100.to-green-300.pt-5.pb-8.text-center.text-sm.px-4
+    .text-xl
+      = t('.welcome_back')
+
+    .text-gray-900.mt-4.mb-5
+      = t('.you_have_visited_n_hosts_html', hosts: t('shared.hosts', count: visits_count))
+
+    .w-full.mt-6
+      = link_to t('.show_my_visits'), visits_path, class: 'tracking-wide inline-block text-white bg-green-600 py-2 px-5 transition duration-200 ease-in-out hover:bg-white hover:text-green-800'

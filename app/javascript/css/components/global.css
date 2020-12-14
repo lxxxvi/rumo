@@ -77,3 +77,7 @@ ol {
 .field_with_errors {
   @apply w-full;
 }
+
+.gradient-on-b b {
+  @apply font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-400 via-green-500;
+}

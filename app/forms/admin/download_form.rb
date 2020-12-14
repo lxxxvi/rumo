@@ -21,7 +21,7 @@ class Admin::DownloadForm
   def date_select_options
     @date_select_options ||= GroupVisitsByDateService.new(@host).visits_by_date.map do |visit_by_date|
       [
-        "#{visit_by_date.date} (#{I18n.t('visits', count: visit_by_date.number_of_visits)})",
+        "#{visit_by_date.date} (#{I18n.t('shared.visits', count: visit_by_date.number_of_visits)})",
         visit_by_date.date.to_s(:db)
       ]
     end

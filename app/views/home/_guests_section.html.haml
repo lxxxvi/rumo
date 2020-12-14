@@ -1,0 +1,39 @@
+%section#guest.bg-gradient-to-r.from-blue-600.to-blue-600.via-blue-700.pt-10.pb-12.text-center.px-4
+  %h2.text-4xl.text-white
+    = t('.guests')
+
+  .container.mx-auto
+    .w-full.mx-auto{ class: 'md:w-1/2'}
+      = form_with model: goto_hosts_form, url: root_path do |f|
+        = f.label :host_url_identifier, class: 'my-2 text-xs text-gray-300 tracking-wide' do
+          = t('.enter_your_hosts_token_html')
+        .my-2
+          .w-full
+            .flex.justify-center
+              .relative.flex.border.border-blue-300.border-r-0.w-full
+                = f.text_field :host_url_identifier, class: 'outline-none w-full'
+              = f.submit t('.go'), class: 'relative-flex bg-blue-300 tracking-wide text-black transition ease-in-out hover:bg-blue-400 duration-200 cursor-pointer'
+          - if f.object.errors.key?(:host_url_identifier)
+            %span.text-xs.text-yellow-400= f.object.errors.messages[:host_url_identifier].join
+
+  .container.mx-auto
+    .w-full.my-4
+      .text-center.text-gray-400
+        = t('.or')
+
+  .container.mx-auto
+    .w-full.mx-auto{ class: 'md:w-1/2'}
+      .flex.flex-wrap
+        .w-full
+          %svg.mx-auto.h-12.w-12.text-white{:fill => "none", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "1.3", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
+            %path{:d => "M0 0h24v24H0z", :stroke => "none"}
+            %path{:d => "M4 7v-1a2 2 0 0 1 2 -2h2"}
+            %path{:d => "M4 17v1a2 2 0 0 0 2 2h2"}
+            %path{:d => "M16 4h2a2 2 0 0 1 2 2v1"}
+            %path{:d => "M16 20h2a2 2 0 0 0 2 -2v-1"}
+            %line{:x1 => "5", :x2 => "19", :y1 => "12", :y2 => "12"}
+        .w-full.mt-2
+          .text-xs.text-gray-300
+            = t('.ask_your_host_for_the_qr_code_html')
+            %br
+            = t('.that_automatically_takes_you_to_registration')

@@ -19,9 +19,9 @@
       .w-full
         .flex.flex-wrap
           = f.label :notes, class: 'w-full text-indigo-400 text-xs'
-          = f.text_field :notes, class: 'bg-indigo-100 w-full border border-indigo-200', placeholder: 'Add your notes if required'
+          = f.text_field :notes, class: 'bg-indigo-100 w-full border border-indigo-200', placeholder: t('.notes_placeholder')
         .flex.flex-wrap.text-center.sm:flex-no-wrap
-          .w-full.p-3.pl-0
-            = f.submit 'Confirm', class: 'cursor-pointer w-full bg-green-500 hover:bg-green-600 transition duration-200 ease-in-out text-sm text-white tracking-wider'
-          .w-full.p-3.pr-0
-            = link_to 'Remove', admin_visit_path(visit), method: :delete, class: 'cursor-pointer w-full block p-3 bg-gray-200 transition duration-200 ease-in-out hover:bg-gray-300 text-sm text-gray-700 tracking-wider'
+          .w-full.my-2
+            = f.submit nil, class: 'cursor-pointer w-full bg-green-500 hover:bg-green-600 transition duration-200 ease-in-out text-sm text-white tracking-wider'
+          .w-full
+            = link_to t('.remove'), admin_visit_path(visit), method: :delete, class: 'cursor-pointer w-full block p-3 bg-gray-200 transition duration-200 ease-in-out hover:bg-gray-300 text-sm text-gray-700 tracking-wider'

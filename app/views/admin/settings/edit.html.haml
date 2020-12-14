@@ -1,8 +1,9 @@
 .text-center.mt-6.mb-10.px-4
-  = link_to 'Back', admin_root_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'
+  = link_to t('shared.back'), admin_root_path, class: 'text-pink-500 hover:text-indigo-500 transition duration-100 ease-in-out'
 
 .text-center.mt-10.px-4
-  %h1.text-4xl.text-indigo-600 Account settings
+  %h1.text-4xl.text-indigo-600
+    = t('.account_settings')
 
 %section.bg-gradient-to-r.from-indigo-500.to-indigo-500.via-indigo-600.pt-10.pb-16.px-4
   .container.mx-auto.text-left
@@ -20,32 +21,30 @@
             = render 'shared/forms/field_error_messages', form: @settings_form, column: :url_identifier
 
             .text-indigo-100.text-xs.mt-4.mb-0
-              This is the last part your public URL:
+              = t('.this_is_the_last_part_of_your_public_url_colon')
 
               .bg-indigo-200.p-1.my-2.text-indigo-800.font-mono
                 - *base_url, url_identifier = @settings_form.calculated_visit_url.rpartition('/')
                 = "#{base_url.join}"
                 %output.inline.font-bold.text-base{ data: { target: 'visit-url-preview.urlIdentifierOutput' } }>= url_identifier
 
-              It may only contain alphanumeric characters and dashes.
+              = t('.it_may_only_contain_alphanumeric_and_dashes')
 
             .text-indigo-100.text-xs
-              Note that your
-              %b QR code changes
-              if you change the URL identifier.
+              = t('.note_that_your_qr_code_changes_if_you_change_url_identifier_html')
 
         .my-8
-          = f.label :auto_confirm_visits, 'Auto-confirm visits', class: 'text-white text-xs'
+          = f.label :auto_confirm_visits, class: 'text-white text-xs'
           .text-indigo-200.text-xs.mt-1
-            When enabled, visits are automatically confirmed.
+            = t('.when_enabled_visits_are_confirmed_automatically')
 
           = f.check_box :auto_confirm_visits
 
         .my-8{ 'data-controller': 'admin-notes-settings' }
           .mb-4
-            = f.label :notes_enabled, "Show 'Notes' field", class: 'text-white text-xs'
+            = f.label :notes_enabled, class: 'text-white text-xs'
             .text-indigo-200.text-xs.mt-1
-              Use this field if you need additional information from your guests.
+              = t('.use_field_to_ask_guest_for_additional_information')
 
             = f.check_box :notes_enabled, data: { action: 'admin-notes-settings#toggleNotesText', target: 'admin-notes-settings.checkbox' }
 
@@ -53,11 +52,11 @@
             = f.label :notes_text, 'Notes text', class: 'text-white text-xs'
             = f.text_area :notes_text, class: 'w-full'
             .text-indigo-100.text-xs.mt-1
-              This text will be shown below the "Notes" field.
+              = t('.text_will_be_shown_below_notes_field')
               %br
-              Describe what kind of information you are asking for.
+              = t('.describe_what_information_you_are_asking_for')
 
         .actions.my-8.text-right
           - if @settings_form.errors.any?
-            = link_to 'Cancel', edit_admin_settings_path, class: 'mr-6 text-gray-400  hover:text-white'
-          = f.button 'Save settings', type: :submit, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-indigo-900 bg-white hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'
+            = link_to t('shared.cancel'), edit_admin_settings_path, class: 'mr-6 text-gray-400  hover:text-white'
+          = f.button nil, type: :submit, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-indigo-900 bg-white hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200'

@@ -1,60 +1,57 @@
 .text-center.mt-8.mb-10.px-4
-  = link_to 'Back', root_path, class: 'text-pink-500 hover:text-blue-500 transition duration-200 ease-in-out'
-
+  = link_to t('shared.back'), root_path, class: 'text-pink-500 hover:text-blue-500 transition duration-200 ease-in-out'
 
 .text-center.px-4
-  %h1.text-4xl.bold.text-blue-500 About
-
+  %h1.text-4xl.bold.text-blue-500
+    = t('.about')
 
 %section#guest.bg-gradient-to-r.from-blue-600.to-blue-600.via-blue-700.pt-10.pb-20.text-center.px-4
   %h2.text-4xl.text-white.leading-tight.m-0.p-0
-    Privacy
-    .text-sm.mt-1 and
-    Transparency
+    = t('.privacy')
+    .text-sm.mt-1= t('.and')
+    = t('.transparency')
 
   .container.mx-auto
     .w-full.mx-auto{ class: 'md:w-1/2'}
       .text-blue-100.tracking-wide.mt-10.text-left
         .my-4
           .w-full.text-2xl.text-blue-200
-            %span.font-bold Rumo
-            does not show contact data unless necessary.
+            %span.font-bold
+              = t('shared.rumo')
+            = t('.does_not_show_contact_data_unless_necessary')
           .w-full.mt-4
-            %p
-              Your contact data (phone number) is
-              %span.font-bold not shown
-              to your host in the first place.
+            = t('.your_contact_data_is_not_shown_to_your_host_html')
+
             %p.mt-4
-              A host can "unlock" and download this data. This is required when they need to provide their guestlists to the contact tracing authorities.
+              = t('.a_host_can_unlock_and_download')
+              = t('.this_is_required_when_they_provide_to_contact_tracing')
 
         .mt-20
           .w-full.text-2xl.text-blue-200
-            %span.font-bold Rumo
-            shows if data has been "unlocked".
+            %span.font-bold
+              = t('shared.rumo')
+            = t('.shows_if_data_has_been_unlocked')
           .w-full.mt-4
             %p.mt-4
-              To begin with, Rumo
-              %span.font-bold won't notify
-              you when your data has been unlocked.
+              = t('.rumo_wont_notify_when_data_has_been_unlocked_html')
             %p.mt-4
-              But, if your data has been unlocked you can see it on your
-              = link_to 'visits', visits_path, class: 'text-blue-300 hover:text-blue-500 transition duration-200 ease-in-out'
-              page.
+              = t('.if_your_data_is_unlocked_you_see_it_on_your')
+              = link_to t('.visits'), visits_path, class: 'text-blue-300 hover:text-blue-500 transition duration-200 ease-in-out'
+              = t('.page_period')
 
         .mt-20
           .w-full.text-2xl.text-blue-200
-            %span.font-bold Rumo
-            deletes data after 14 days.
+            %span.font-bold
+              = t('shared.rumo')
+            = t('.deletes_data_after_14_days')
           .w-full.mt-4
             %p
-              14 days after your visit, the data will automatically be
-              = succeed "." do
-                %span.font-bold.tracking-wider deleted
-              Forever.
+              = t('.data_will_automatically_be_deleted_html')
+              = t('.forever_period')
             %p.mt-4
-              There won't be any backups either, it will be gone.
-
+              = t('.there_wont_be_any_backups')
 
 %section#guest.pt-10.pb-12.text-center.px-4
-  %h2.text-3xl.mt-10 Contact
+  %h2.text-3xl.mt-10
+    = t('.contact')
   %p.text-xl= mail_to 'rumo.page@gmail.com', 'rumo.page@gmail.com', class: 'text-pink-500 hover:text-blue-500 transition duration-200 ease-in-out'

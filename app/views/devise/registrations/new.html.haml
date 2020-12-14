@@ -1,7 +1,8 @@
-= render 'shared/general/guest_most_not_sign_in'
+= render 'shared/general/guest_must_not_sign_in'
 
 .text-center.mt-10.mb-8
-  %h1.text-4xl.text-indigo-600 Sign up as a host
+  %h1.text-4xl.text-indigo-600
+    = t('.sign_up_as_a_host')
 
 %section.bg-gradient-to-r.from-indigo-600.to-indigo-500.via-indigo-700.pt-12.pb-6.px-4
   .container.mx-auto
@@ -9,24 +10,24 @@
       = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
         .my-8
           = f.label :name, class: 'text-white text-xs tracking-wide'
-          = f.text_field :name, class: 'input-text w-full', placeholder: 'e.g. Central Perk Cafe'
+          = f.text_field :name, class: 'input-text w-full', placeholder: t('.name_input_placeholder')
           = render 'shared/forms/field_error_messages', form: resource, column: :name
 
         .my-8
           = f.label :email, class: 'text-white text-xs tracking-wide'
-          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input-text w-full', placeholder: 'e.g. central-perk-cafe@smellycat.com'
+          = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input-text w-full', placeholder: t('.email_placeholder')
           = render 'shared/forms/field_error_messages', form: resource, column: :email
 
         .my-8
           = f.label :password, class: 'text-white text-xs tracking-wide'
-          = f.password_field :password, autocomplete: "new-password", class: 'input-text w-full', placeholder: "e.g. #{SecureRandom.alphanumeric(12)}"
+          = f.password_field :password, autocomplete: "new-password", class: 'input-text w-full', placeholder: t('.password_placeholder', example_value: SecureRandom.alphanumeric(12))
           = render 'shared/forms/field_error_messages', form: resource, column: :password
           - if @minimum_password_length
             .mt-1.text-xs.text-gray-400
               (#{@minimum_password_length} characters minimum)
 
         .actions.my-8.text-right
-          = link_to 'Cancel', root_path, class: 'mr-6 text-gray-400 hover:text-white'
+          = link_to t('shared.cancel'), root_path, class: 'mr-6 text-gray-400 hover:text-white'
           = f.button nil, type: :submit, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-indigo-900 bg-white hover:bg-indigo-400 hover:text-white focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-200' do
             %svg.h-5.w-5.-ml-3.mr-3{:fill => "none", :stroke => "currentColor", "stroke-linecap" => "round", "stroke-linejoin" => "round", "stroke-width" => "1.2", :viewbox => "0 0 24 24", :xmlns => "http://www.w3.org/2000/svg"}
               %path{:d => "M0 0h24v24H0z", :stroke => "none"}
@@ -35,5 +36,5 @@
             Sign up
 
         .my-4.text-right
-          = link_to 'Sign in', new_session_path(resource_name), class: 'text-white hover:text-indigo-300 transition duration-100 ease-in-out'
+          = link_to t('shared.sign_in'), new_session_path(resource_name), class: 'text-white hover:text-indigo-300 transition duration-100 ease-in-out'
 

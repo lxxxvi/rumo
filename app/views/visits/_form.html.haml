@@ -12,28 +12,26 @@
                          data: { target: 'visit.contactField' }
           = render 'shared/forms/field_error_messages', form: visit_form, column: :contact
           .mt-1.text-blue-100.text-xs
-            This will
-            %em not
-            be shown entirely to the host in the first place.
+            = t('.this_will_not_be_shown_entirely_to_the_host_html')
 
         .my-8
           = f.label :name, class: 'text-white text-xs tracking-wide'
           = f.text_field :name,
-                         placeholder: "optional",
+                         placeholder: t('shared.optional'),
                          class: 'w-full',
                          data: { target: 'visit.nameField' }
 
           = render 'shared/forms/field_error_messages', form: visit_form, column: :name
-          .mt-1.text-blue-100.text-xs This is shown to the host, it's optional.
+          .mt-1.text-blue-100.text-xs
+            = t('.this_is_shown_to_the_host_its_optional')
 
         - if visit_form.object.host.notes_enabled?
           .mb-8
             = f.label :notes, class: 'text-white text-xs tracking-wide'
-            = f.text_field :notes, placeholder: 'optional', class: 'w-full'
+            = f.text_field :notes, placeholder: t('shared.optional'), class: 'w-full'
             .notes-text.mt-1.text-blue-100.text-xs
-              = visit_form.object.host.notes_text.presence || 'Use this field as indicated by the host.'
+              = visit_form.object.host.notes_text.presence || t('.use_this_field_as_indicated_by_the_host')
 
         .actions.mt-10.text-right
-          = link_to 'Cancel', root_path, class: 'mr-6 text-gray-400  hover:text-white'
-          = f.button nil, type: :submit, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-blue-800 bg-white hover:bg-blue-400 hover:text-white focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-200' do
-            Share contact data
+          = link_to t('shared.cancel'), root_path, class: 'mr-6 text-gray-400  hover:text-white'
+          = f.button nil, type: :submit, class: 'inline-flex items-center px-10 py-3 border border-transparent text-base leading-6 font-medium text-blue-800 bg-white hover:bg-blue-400 hover:text-white focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition ease-in-out duration-200'
