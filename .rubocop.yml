@@ -14,10 +14,16 @@ AllCops:
 Rails:
   Enabled: true
 
+Gemspec/DateAssignment:
+  Enabled: true
+
 Layout/BeginEndAlignment:
   Enabled: true
 
 Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+Layout/LineEndStringConcatenationIndentation:
   Enabled: true
 
 Layout/LineLength:
@@ -32,6 +38,12 @@ Layout/SpaceBeforeBrackets:
   Enabled: true
 
 Lint/AmbiguousAssignment:
+  Enabled: true
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: true
+
+Lint/AmbiguousRange:
   Enabled: true
 
 Lint/BinaryOperatorWithIdenticalOperands:
@@ -73,10 +85,16 @@ Lint/EmptyConditionalBody:
 Lint/EmptyFile:
   Enabled: true
 
+Lint/EmptyInPattern:
+  Enabled: true
+
 Lint/FloatComparison:
   Enabled: true
 
 Lint/IdentityComparison:
+  Enabled: true
+
+Lint/IncompatibleIoSelectWithFiberScheduler:
   Enabled: true
 
 Lint/LambdaWithoutLiteralBlock:
@@ -91,6 +109,12 @@ Lint/MixedRegexpCaptureTypes:
 Lint/NoReturnInBeginEndBlocks:
   Enabled: true
 
+Lint/NumberedParameterAssignment:
+  Enabled: true
+
+Lint/OrAssignmentToConstant:
+  Enabled: true
+
 Lint/OutOfRangeRegexpRef:
   Enabled: true
 
@@ -100,10 +124,16 @@ Lint/RaiseException:
 Lint/RedundantDirGlobSort:
   Enabled: true
 
+Lint/RequireRelativeSelfPath:
+  Enabled: true
+
 Lint/SelfAssignment:
   Enabled: true
 
 Lint/StructNewOverride:
+  Enabled: true
+
+Lint/SymbolConversion:
   Enabled: true
 
 Lint/ToEnumArguments:
@@ -113,6 +143,9 @@ Lint/TopLevelReturnWithArgument:
   Enabled: true
 
 Lint/TrailingCommaInAttributeDeclaration:
+  Enabled: true
+
+Lint/TripleQuotes:
   Enabled: true
 
 Lint/UnexpectedBlockArity:
@@ -151,13 +184,25 @@ Naming/VariableNumber:
 Rails/ActiveRecordCallbacksOrder:
   Enabled: true
 
+Rails/AddColumnIndex:
+  Enabled: true
+
 Rails/AfterCommitOverride:
   Enabled: true
 
 Rails/AttributeDefaultBlockValue:
   Enabled: true
 
+Rails/EagerEvaluationLogMessage:
+  Enabled: true
+
+Rails/ExpandedDateRange:
+  Enabled: true
+
 Rails/FindById:
+  Enabled: true
+
+Rails/I18nLocaleAssignment:
   Enabled: true
 
 Rails/Inquiry:
@@ -178,6 +223,9 @@ Rails/Pluck:
 Rails/PluckInWhere:
   Enabled: true
 
+Rails/RedundantTravelBack:
+  Enabled: true
+
 Rails/RenderInline:
   Enabled: true
 
@@ -190,6 +238,12 @@ Rails/ShortI18n:
 Rails/SquishedSQLHeredocs:
   Enabled: true
 
+Rails/TimeZoneAssignment:
+  Enabled: true
+
+Rails/UnusedIgnoredColumns:
+  Enabled: true
+
 Rails/WhereEquals:
   Enabled: true
 
@@ -197,6 +251,9 @@ Rails/WhereExists:
   Enabled: true
 
 Rails/WhereNot:
+  Enabled: true
+
+Security/IoMethods:
   Enabled: true
 
 Style/AccessorGrouping:
@@ -247,6 +304,9 @@ Style/GlobalStdStream:
 Style/HashAsLastArrayItem:
   Enabled: true
 
+Style/HashConversion:
+  Enabled: true
+
 Style/HashEachMethods:
   Enabled: true
 
@@ -262,6 +322,12 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: true
 
+Style/IfWithBooleanLiteralBranches:
+  Enabled: true
+
+Style/InPatternThen:
+  Enabled: true
+
 Style/KeywordParametersOrder:
   Enabled: true
 
@@ -269,16 +335,28 @@ Style/Lambda:
   Enabled: true
   EnforcedStyle: literal
 
+Style/MultilineInPatternThen:
+  Enabled: true
+
 Style/NegatedIfElseCondition:
   Enabled: true
 
 Style/NilLambda:
   Enabled: true
 
+Style/NumberedParameters:
+  Enabled: true
+
+Style/NumberedParametersLimit:
+  Enabled: true
+
 Style/NumericLiterals:
   Enabled: false
 
 Style/OptionalBooleanParameter:
+  Enabled: true
+
+Style/QuotedSymbols:
   Enabled: true
 
 Style/RedundantArgument:
@@ -302,6 +380,12 @@ Style/RedundantRegexpEscape:
 Style/RedundantSelfAssignment:
   Enabled: true
 
+Style/RedundantSelfAssignmentBranch:
+  Enabled: true
+
+Style/SelectByRegexp:
+  Enabled: true
+
 Style/SingleArgumentDig:
   Enabled: true
 
@@ -309,6 +393,9 @@ Style/SlicingWithRange:
   Enabled: true
 
 Style/SoleNestedConditional:
+  Enabled: true
+
+Style/StringChars:
   Enabled: true
 
 Style/StringConcatenation:
