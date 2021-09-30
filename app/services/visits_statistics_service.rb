@@ -21,7 +21,7 @@ class VisitsStatisticsService
 
   def sql_result_as_hash
     sql_result.reduce({}) do |result, item|
-      result.merge(Hash[item['status'], item['visit_count']])
+      result.merge({ item['status'] => item['visit_count'] })
     end.deep_symbolize_keys
   end
 
