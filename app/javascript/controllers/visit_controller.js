@@ -1,4 +1,4 @@
-import { Controller } from "stimulus";
+import { Controller } from "@hotwired/stimulus";
 import RumoStorage from "../storages/rumo_storage";
 
 export default class extends Controller {
