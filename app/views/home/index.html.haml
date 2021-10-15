@@ -1,4 +1,13 @@
-.text-center.mb-24.mt-16.px-4
+.my-10.px-4
+  .border.border-red-300.bg-red-100.p-4.text-center
+    .mb-2
+      %p.text-lg.tracking-wide https://rumo.host will be discontinued by November 13th 2021.
+    .mt-2.text-gray-500.text-sm
+      %p The site will no longer be available after that date.
+      %p All data will be permanently deleted.
+      %p.mt-1 Thank you for using this service.
+
+.text-center.mb-16.mt-10.px-4
   %h1.text-center.text-5xl.mb-0.leading-tight.text-blue-900
     Rumo is a
     %span.block
@@ -104,4 +113,3 @@
     .w-full.text-center.text-sm.my-3.text-indigo-300
       Already have an account?
       = link_to 'Sign in', new_host_session_path, class: 'ml-1 text-white hover:text-indigo-300 transition duration-100 ease-in-out'
-
